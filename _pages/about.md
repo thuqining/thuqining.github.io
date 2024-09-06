@@ -13,7 +13,7 @@ I am a postdoctoral research scientist in Earth and Environmental Engineering at
 I received my B.S. degree in Electrical Engineering from Tianjin University, Tianjin, China, in 2018, supervised by [Prof. Yanxia Zhang](https://seea.tju.edu.cn/info/1012/1489.htm) and the Ph.D. degree in Electrical Engineering from Tsinghua University, Beijing, China, in 2023, supervised by [Prof. Lin Cheng](https://www.eea.tsinghua.edu.cn/faculties/chenglin.htm). Before joining Columbia University, he was a visiting scholar at the Technical University of Denmark in 2022, supervised by [Prof. Pierre Pinson](https://profiles.imperial.ac.uk/p.pinson) and [Prof. Mads R. Almassalkhi](https://madsalma.github.io/). He was a research associate in Electrical Engineering at Tsinghua University in 2024, supervised by [Prof. Feng Liu](https://www.eea.tsinghua.edu.cn/faculties/fliu.htm).
  
 
-Updates
+Highlights
 ======
 Like many other Jekyll-based GitHub Pages templates, Academic Pages makes you separate the website's content from its form. The content & metadata of your website are in structured markdown files, while various other files constitute the theme, specifying how to transform that content & metadata into HTML pages. You keep these various markdown (.md), YAML (.yml), HTML, and CSS files in a public GitHub repository. Each time you commit and push an update to the repository, the [GitHub pages](https://pages.github.com/) service creates static HTML pages based on these files, which are hosted on GitHub's servers free of charge.
 
