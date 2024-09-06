@@ -7,8 +7,11 @@ redirect_from:
   - /about/
   - /about.html
 ---
-I am a postdoctoral research scientist in Earth and Environmental Engineering at Columbia University.
+I am a postdoctoral research scientist in Earth and Environmental Engineering at Columbia University, hosted by Prof. Bolun Xu. My research interest include data-driven modeling, optimization under uncertainty, and market design for power systems with generalized energy storage (DERs). I am currently serving as the Youth Editorial Board Member of [Power System Protection and Control](www.dlbh.net) and [Energy Storage and Applications](https://www.mdpi.com/journal/esa), and the guest editor of [Processes](https://www.mdpi.com/journal/processes/special_issues/H1GF9G7324) and [Frontier in Energy Research](https://www.frontiersin.org/research-topics/65554/advancing-demand-response-in-renewable-smart-grid-for-a-sustainable-future).
+    
 
+as born in 1996. He received a B.S. degree in Electrical Engineering from Tianjin University, Tianjin, China, in 2018 and the Ph.D. degree in Electrical Engineering from Tsinghua University, Beijing, China, in 2023. He is currently a postdoctoral research scientist in Earth and Environmental Engineering at Columbia University. Before joining Columbia University, he was a visiting scholar at the Technical University of Denmark in 2022. He was a research associate in Electrical Engineering at Tsinghua University in 2024.
+    His current research focuses on data-driven modeling, optimization under uncertainty, and market design for power systems with generalized energy storage.  
 
 A data-driven personal website
 ======
