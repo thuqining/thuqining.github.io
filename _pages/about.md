@@ -63,5 +63,14 @@ Highlights
 
 [2018.11] Our regular paper entitled "Joint Optimal Planning and Operation of Active Distribution System with Generic Energy Storage Resources and Distributed Generations" won the Outstanding Paper Award of Power System Automation Committee of Chinese Society for Electrical Engineering!
 
+[2018.06] Honored to receive the Outstanding Graduate Student Award (Top 2%) from Tianjin University!
+
+[2017.12] Honored to receive the [16th Student Science Award](https://news.tju.edu.cn/info/1017/34537.htm) (only 10) from Tianjin University!
+
+[2017.12] Honored to receive the Baosteel Education Fund Outstanding Student Scholarship!
+
 [2017.03] My first regular(educational) paper entitled "The Application of Integral Transform Method to Solve the Boundary Value Problem of Electrostatic Field" has been accepted by the [Journal of EEE](https://d.wanfangdata.com.cn/periodical/dqdzjxxb201702024).
 
+[2016.12] Honored to receive the Special Prize of China Instrument & Control Society Scholarship!
+
+[2016.12] Honored to receive the National Scholarship!
