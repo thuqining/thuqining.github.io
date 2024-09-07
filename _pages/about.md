@@ -38,3 +38,5 @@ Highlights
 [2021.11] Our regular paper entitled "Coordinated Operation Strategy of Distribution Network with the Multi-Station Integrated System Considering the Risk of Controllable Resources" has been accepted by the [International Journal of Electrical Power & Energy Systems](https://www.sciencedirect.com/science/article/pii/S0142061521010139).
 
 [2021.11] Our regular paper entitled "Spatial-Temporal Optimal Dispatch of Mobile Energy Storage for Emergency Power Supply" has been accepted by the [Energy Reports](https://www.sciencedirect.com/science/article/pii/S2352484721013494).
+
+[2021.05] Our regular paper entitled "Optimization Method of Resource Combination for Virtual Power Plant Based on Modern Portfolio Theory" has been accepted by the [Automation of Electric Power Systems](http://www.aeps-info.com/aeps/article/abstract/20200828001) and won the High PCSI Paper, Highly Cited Paper of [CNKI](https://www.cnki.net/index/).
