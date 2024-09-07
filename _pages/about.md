@@ -49,6 +49,6 @@ Highlights
 
 [2020.03] Our review paper entitled "Review and Prospect of Distribution Network Planning Research Considering Access of Flexible Load" has been accepted by the [Automation of Electric Power Systems](http://www.aeps-info.com/aeps/article/abstract/20191030003) and won the [Outstanding Paper](https://www.eea.tsinghua.edu.cn/info/1038/3955.htm) of 2021!
 
-[2019.09] Our regular paper entitled "Evaluation Method for Power Grid Vulnerability Considering Operation Reliability of Components" has been accepted by the [Proceedings of the CSU-EPSA](http://www.aeps-info.com/aeps/article/abstract/20180814004).
+[2019.09] Our regular paper entitled "Evaluation Method for Power Grid Vulnerability Considering Operation Reliability of Components" has been accepted by the [Proceedings of the CSU-EPSA](https://dlzd.cbpt.cnki.net/portal/journal/portal/client/paper/b35af89a1df693d888e29ee2534f299c).
 
 [2019.03] Our regular paper entitled "Joint Planning of Generalized Energy Storage Resource and Distributed Generator Considering Operation Control Strategy" has been accepted by the [Automation of Electric Power Systems](http://www.aeps-info.com/aeps/article/abstract/20180814004) and won the High PCSI Paper, Highly Cited Paper, Highly Downloaded Paper of [CNKI](https://www.cnki.net/index/)!
