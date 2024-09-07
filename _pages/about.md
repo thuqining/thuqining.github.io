@@ -15,7 +15,7 @@ I received my B.S. degree in Electrical Engineering from Tianjin University, Tia
 
 Highlights
 ======
-[2024.09] Our regular paper entitled "Long-Term Energy Management for Microgrid with Hybrid Hydrogen-Battery Energy Storage: A Prediction-Free Coordinated Optimization Framework" has been accepted by the [Applied Energy]().
+[2024.09] Our regular paper entitled "Long-Term Energy Management for Microgrid with Hybrid Hydrogen-Battery Energy Storage: A Prediction-Free Coordinated Optimization Framework" has been accepted by the [Applied Energy]()!
 
 [2024.07] Our conference paper entitled "Reliability-Aware Probabilistic Reserve Procurement under Decision-Dependent Uncertainty" won the [Best Paper Award](https://www.linkedin.com/posts/ning-qi-805173210_happy-to-win-the-best-paper-of-ieee-pes-general-activity-7221775130690011136-My_6?utm_source=share&utm_medium=member_desktop) (Top 5%) from the IEEE PES General Meeting 2024!
 
@@ -43,8 +43,10 @@ Highlights
 
 [2021.04] Our review paper entitled "Review and Prospect of Research on Operation Reliability of Power Distribution and Consumption System Considering Various Distributed Energy Resources" has been accepted by the [Automation of Electric Power Systems](http://www.aeps-info.com/aeps/article/abstract/20200828012).
 
-[2020.03] Our review paper entitled "Review and Prospect of Distribution Network Planning Research Considering Access of Flexible Load" has been accepted by the [Automation of Electric Power Systems](http://www.aeps-info.com/aeps/article/abstract/20191030003) and won the [Outstanding Paper](https://www.eea.tsinghua.edu.cn/info/1038/3955.htm) of 2021!
+[2020.08] Our regular paper entitled "Practical Demand Response Potential Evaluation of Air-conditioning Loads for Aggregated Customers" has been accepted by [Energy Report](https://www.sciencedirect.com/science/article/pii/S2352484720317200). 
 
-[2020.03] Our review paper entitled "Review and Prospect of Distribution Network Planning Research Considering Access of Flexible Load" has been accepted by the [Automation of Electric Power Systems](http://www.aeps-info.com/aeps/article/abstract/20191030003) and won the [Outstanding Paper](https://www.eea.tsinghua.edu.cn/info/1038/3955.htm) of 2021.
+[2020.08] Our regular paper entitled "Smart Meter Data-Driven Evaluation of Operational Demand Response Potential of Residential Air Conditioning Loads" has been accepted by the [Applied Energy](https://www.sciencedirect.com/science/article/pii/S0306261920312022)! 
+
+[2020.03] Our review paper entitled "Review and Prospect of Distribution Network Planning Research Considering Access of Flexible Load" has been accepted by the [Automation of Electric Power Systems](http://www.aeps-info.com/aeps/article/abstract/20191030003) and won the [Outstanding Paper](https://www.eea.tsinghua.edu.cn/info/1038/3955.htm) of 2021!
 
 [2019.03] Our regular paper entitled "Joint Planning of Generalized Energy Storage Resource and Distributed Generator Considering Operation Control Strategy" has been accepted by the [Automation of Electric Power Systems](http://www.aeps-info.com/aeps/article/abstract/20180814004) and won the High PCSI Paper, Highly Cited Paper, Highly Downloaded Paper of [CNKI](https://www.cnki.net/index/)!
