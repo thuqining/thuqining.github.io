@@ -27,6 +27,8 @@ Highlights
 
 [2023.09] Our regular paper entitled "Typical Scenario Generation Algorithm for Microgrid Based on Deep Temporal Clustering" has been accepted by the [Automation of Electric Power Systems](http://www.aeps-info.com/aeps/article/abstract/20230323001).
 
+[2023.07] Honored to receive the Outstanding Individual Contributor Award for Science and Technology Major Project of Inner Mongolia Autonomous Region of China!
+
 [2023.07] Honored to receive the [China Postdoctoral Science Foundation Special Funded Project](https://postdoctor.tsinghua.edu.cn/info/zqkh/2199) (only 15 in EE)!
 
 [2023.03] Our regular paper entitled "Chance-Constrained Generic Energy Storage Operations Under Decision-Dependent Uncertainty" has been accepted by the [IEEE Transactions on Sustainable Energy](https://ieeexplore.ieee.org/abstract/document/10081472)!
@@ -53,4 +55,4 @@ Highlights
 
 [2019.03] Our regular paper entitled "Joint Planning of Generalized Energy Storage Resource and Distributed Generator Considering Operation Control Strategy" has been accepted by the [Automation of Electric Power Systems](http://www.aeps-info.com/aeps/article/abstract/20180814004) and won the High PCSI Paper, Highly Cited Paper, Highly Downloaded Paper of [CNKI](https://www.cnki.net/index/)!
 
-[2017.03] My first regular(educational) paper entitled "The Application of Integral Transform Method to Solve the Boundary Value Problem of Electrostatic Field" has been accepted by the [Journal of EEE](http://www.aeps-info.com/aeps/article/abstract/20180814004).
+[2017.03] My first regular(educational) paper entitled "The Application of Integral Transform Method to Solve the Boundary Value Problem of Electrostatic Field" has been accepted by the [Journal of EEE](https://d.wanfangdata.com.cn/periodical/dqdzjxxb201702024).
