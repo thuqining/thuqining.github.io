@@ -15,6 +15,8 @@ I received my B.S. degree in Electrical Engineering from Tianjin University, Tia
 
 Highlights
 ======
+[2024.09] Our paper entitled "Mitigation of overvoltage in LVDC distribution system with constant power load using generic energy storage system" has been accepted by the [Applied Energy]().
+
 [2024.07] Our paper entitled "Reliability-Aware Probabilistic Reserve Procurement under Decision-Dependent Uncertainty" won the Best Paper Award (Top 5%) from the IEEE PES General Meeting 2024!
 
 [2024.06] Our paper entitled "Mitigation of overvoltage in LVDC distribution system with constant power load using generic energy storage system" has been accepted by the [Journal of Energy Storage](https://www.sciencedirect.com/science/article/pii/S2352152X24021406).
