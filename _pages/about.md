@@ -23,7 +23,7 @@ Highlights
 
 [2024.04] My [talk](../files/AATALK.pdf) at Aalto University: "Unlocking the Reliable Flexibility from Generalized Energy Storage Resources"
 
-[2024.01] Honored to receive the Outstanding Reviewer Award by the [Renewable Energy](http://www.kzsny.com/)!
+[2024.01] Honored to receive the Outstanding Reviewer Award again by the [Renewable Energy](http://www.kzsny.com/)!
 
 [2023.09] Our regular paper entitled "Typical Scenario Generation Algorithm for Microgrid Based on Deep Temporal Clustering" has been accepted by the [Automation of Electric Power Systems](http://www.aeps-info.com/aeps/article/abstract/20230323001).
 
@@ -43,10 +43,12 @@ Highlights
 
 [2021.04] Our review paper entitled "Review and Prospect of Research on Operation Reliability of Power Distribution and Consumption System Considering Various Distributed Energy Resources" has been accepted by the [Automation of Electric Power Systems](http://www.aeps-info.com/aeps/article/abstract/20200828012).
 
-[2020.08] Our regular paper entitled "Practical Demand Response Potential Evaluation of Air-conditioning Loads for Aggregated Customers" has been accepted by [Energy Report](https://www.sciencedirect.com/science/article/pii/S2352484720317200). 
+[2020.09] Our regular paper entitled "Practical Demand Response Potential Evaluation of Air-conditioning Loads for Aggregated Customers" has been accepted by [Energy Report](https://www.sciencedirect.com/science/article/pii/S2352484720317200). 
 
 [2020.08] Our regular paper entitled "Smart Meter Data-Driven Evaluation of Operational Demand Response Potential of Residential Air Conditioning Loads" has been accepted by the [Applied Energy](https://www.sciencedirect.com/science/article/pii/S0306261920312022)! 
 
 [2020.03] Our review paper entitled "Review and Prospect of Distribution Network Planning Research Considering Access of Flexible Load" has been accepted by the [Automation of Electric Power Systems](http://www.aeps-info.com/aeps/article/abstract/20191030003) and won the [Outstanding Paper](https://www.eea.tsinghua.edu.cn/info/1038/3955.htm) of 2021!
+
+[2019.09] Our regular paper entitled "Evaluation Method for Power Grid Vulnerability Considering Operation Reliability of Components" has been accepted by the [Proceedings of the CSU-EPSA](http://www.aeps-info.com/aeps/article/abstract/20180814004).
 
 [2019.03] Our regular paper entitled "Joint Planning of Generalized Energy Storage Resource and Distributed Generator Considering Operation Control Strategy" has been accepted by the [Automation of Electric Power Systems](http://www.aeps-info.com/aeps/article/abstract/20180814004) and won the High PCSI Paper, Highly Cited Paper, Highly Downloaded Paper of [CNKI](https://www.cnki.net/index/)!
