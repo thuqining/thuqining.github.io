@@ -21,7 +21,9 @@ Highlights
 
 [2024.06] Our paper entitled "Mitigation of overvoltage in LVDC distribution system with constant power load using generic energy storage system" has been accepted by the [Journal of Energy Storage](https://www.sciencedirect.com/science/article/pii/S2352152X24021406).
 
-[2024.05] Honored to receive the Outstanding Reviewer Award by the [Renewable Energy](http://www.kzsny.com/)!
+[2024.05] My talk is: "Unlocking the Reliable Flexibility from Generalized Energy Storage Resources"!
+
+[2024.01] Honored to receive the Outstanding Reviewer Award by the [Renewable Energy](http://www.kzsny.com/)!
 
 [2023.09] Our paper entitled "Typical Scenario Generation Algorithm for Microgrid Based on Deep Temporal Clustering" has been accepted by the [Automation of Electric Power Systems](http://www.aeps-info.com/aeps/article/abstract/20230323001).
 
