@@ -39,9 +39,12 @@ Highlights
 
 [2021.11] Our regular paper entitled "Spatial-Temporal Optimal Dispatch of Mobile Energy Storage for Emergency Power Supply" has been accepted by the [Energy Reports](https://www.sciencedirect.com/science/article/pii/S2352484721013494).
 
-[2021.05] Our regular paper entitled "Optimization Method of Resource Combination for Virtual Power Plant Based on Modern Portfolio Theory" has been accepted by the [Automation of Electric Power Systems](http://www.aeps-info.com/aeps/article/abstract/20200828001) and won the High PCSI Paper, Highly Cited Paper of [CNKI](https://www.cnki.net/index/).
+[2021.05] Our regular paper entitled "Optimization Method of Resource Combination for Virtual Power Plant Based on Modern Portfolio Theory" has been accepted by the [Automation of Electric Power Systems](http://www.aeps-info.com/aeps/article/abstract/20200828001) and won the High PCSI Paper, Highly Cited Paper of [CNKI](https://www.cnki.net/index/)!
 
 [2021.04] Our review paper entitled "Review and Prospect of Research on Operation Reliability of Power Distribution and Consumption System Considering Various Distributed Energy Resources" has been accepted by the [Automation of Electric Power Systems](http://www.aeps-info.com/aeps/article/abstract/20200828012).
 
+[2020.03] Our review paper entitled "Review and Prospect of Distribution Network Planning Research Considering Access of Flexible Load" has been accepted by the [Automation of Electric Power Systems](http://www.aeps-info.com/aeps/article/abstract/20191030003) and won the [Outstanding Paper](https://www.eea.tsinghua.edu.cn/info/1038/3955.htm) of 2021!
+
 [2020.03] Our review paper entitled "Review and Prospect of Distribution Network Planning Research Considering Access of Flexible Load" has been accepted by the [Automation of Electric Power Systems](http://www.aeps-info.com/aeps/article/abstract/20191030003) and won the [Outstanding Paper](https://www.eea.tsinghua.edu.cn/info/1038/3955.htm) of 2021.
 
+[2019.03] Our regular paper entitled "Joint Planning of Generalized Energy Storage Resource and Distributed Generator Considering Operation Control Strategy" has been accepted by the [Automation of Electric Power Systems](http://www.aeps-info.com/aeps/article/abstract/20180814004) and won the High PCSI Paper, Highly Cited Paper, Highly Downloaded Paper of [CNKI](https://www.cnki.net/index/)!
