@@ -74,3 +74,7 @@ Highlights
 [2016.12] Honored to receive the Special Prize of China Instrument & Control Society Scholarship!
 
 [2016.12] Honored to receive the National Scholarship!
+
+[2016.09] Honored to receive the First Prize of the National College Student Mathematics Competition (Top 5 in Tianjin, Top 20 in China)!
+
+
