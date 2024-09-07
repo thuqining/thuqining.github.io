@@ -15,4 +15,4 @@ I received my B.S. degree in Electrical Engineering from Tianjin University, Tia
 
 Highlights
 ======
-[2024.07] Honored to receive the Best Paper Award (Top 5%) from the IEEE PES General Meeting 2024!
+[2024.07] Our probabilistic reserve paper has won the Best Paper Award (Top 5%) from the IEEE PES General Meeting 2024!
