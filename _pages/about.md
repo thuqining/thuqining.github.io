@@ -25,9 +25,10 @@ Highlights
 
 [2023.09] Our paper entitled "Typical Scenario Generation Algorithm for Microgrid Based on Deep Temporal Clustering" has been accepted by the [Automation of Electric Power Systems](http://www.aeps-info.com/aeps/article/abstract/20230323001).
 
-[2023.07] Honored to receive the [China Postdoctoral Science Foundation Special Funded Project](https://postdoctor.tsinghua.edu.cn/info/zqkh/2199)(only 15 in EE)!
+[2023.07] Honored to receive the [China Postdoctoral Science Foundation Special Funded Project](https://postdoctor.tsinghua.edu.cn/info/zqkh/2199) (only 15 in EE)!
 
 [2023.03] Our paper entitled "Chance-Constrained Generic Energy Storage Operations Under Decision-Dependent Uncertainty" has been accepted by the [IEEE Transactions on Sustainable Energy](https://ieeexplore.ieee.org/abstract/document/10081472)!
 
 [2023.02] Our paper entitled "Portfolio Optimization of Generic Energy Storage-Based Virtual Power Plant under Decision-Dependent Uncertainties" has been accepted by the [Journal of Energy Storage](https://www.sciencedirect.com/science/article/pii/S2352152X23003973).
 
+[2023.02] Our paper entitled "Portfolio Optimization of Generic Energy Storage-Based Virtual Power Plant under Decision-Dependent Uncertainties" has been accepted by the [Journal of Energy Storage](https://www.sciencedirect.com/science/article/pii/S2352152X23003973).
