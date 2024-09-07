@@ -69,11 +69,17 @@ Highlights
 
 [2017.12] Honored to receive the Baosteel Education Fund Outstanding Student Scholarship!
 
+[2017.09] Honored to receive the Special Prize of the “Challenge Cup” National College Student Extracurricular Academic Science and Technology Works Competition (Top 1)!
+
+[2017.04] Honored to receive the Meritorious Winner of the Mathematical Contest in Modeling (MCM) (Top 5%)!
+
 [2017.03] My first regular(educational) paper entitled "The Application of Integral Transform Method to Solve the Boundary Value Problem of Electrostatic Field" has been accepted by the [Journal of EEE](https://d.wanfangdata.com.cn/periodical/dqdzjxxb201702024).
 
 [2016.12] Honored to receive the Special Prize of China Instrument & Control Society Scholarship!
 
 [2016.12] Honored to receive the National Scholarship!
+
+[2016.12] Honored to receive the Second Prize of China Undergraduate Mathematical Contest in Modeling (CUMCM) (Top 5%)!
 
 [2016.09] Honored to receive the First Prize of the National College Student Mathematics Competition (Top 5 in Tianjin, Top 20 in China)!
 
