@@ -21,4 +21,6 @@ Highlights
 
 [2024.06] Our paper entitled "Mitigation of overvoltage in LVDC distribution system with constant power load using generic energy storage system" has been accepted by the [Journal of Energy Storage](https://www.sciencedirect.com/science/article/pii/S2352152X24021406).
 
-[2024.05] Honored to receive the Outstanding Reviewer Award by the [Renewable Energy](https://www.sciencedirect.com/science/article/pii/S2352152X24021406).
+[2024.05] Honored to receive the Outstanding Reviewer Award by the [Renewable Energy](http://www.kzsny.com/).
+
+[2023.03] Our paper entitled "Chance-Constrained Generic Energy Storage Operations Under Decision-Dependent Uncertainty" has been accepted by the [IEEE Transactions on Sustainable Energy](https://ieeexplore.ieee.org/abstract/document/10081472).
