@@ -31,4 +31,4 @@ Highlights
 
 [2023.02] Our paper entitled "Portfolio Optimization of Generic Energy Storage-Based Virtual Power Plant under Decision-Dependent Uncertainties" has been accepted by the [Journal of Energy Storage](https://www.sciencedirect.com/science/article/pii/S2352152X23003973).
 
-[2023.02] Our paper entitled "Portfolio Optimization of Generic Energy Storage-Based Virtual Power Plant under Decision-Dependent Uncertainties" has been accepted by the [Journal of Energy Storage](https://www.sciencedirect.com/science/article/pii/S2352152X23003973).
+[2023.02] Our paper entitled "Coordinated Operation Strategy of Distribution Network with the Multi-Station Integrated System Considering the Risk of Controllable Resources" has been accepted by the [International Journal of Electrical Power & Energy Systems](https://www.sciencedirect.com/science/article/pii/S0142061521010139).
