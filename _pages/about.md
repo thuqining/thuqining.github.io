@@ -57,4 +57,6 @@ Highlights
 
 [2019.03] Our regular paper entitled "Joint Planning of Generalized Energy Storage Resource and Distributed Generator Considering Operation Control Strategy" has been accepted by the [Automation of Electric Power Systems](http://www.aeps-info.com/aeps/article/abstract/20180814004) and won the High PCSI Paper, Highly Cited Paper, Highly Downloaded Paper of [CNKI](https://www.cnki.net/index/)!
 
+[2018.11] Our regular paper entitled "Joint Optimal Planning and Operation of Active Distribution System with Generic Energy Storage Resources and Distributed Generations" won the Outstanding Paper Award of Power System Automation Committee of Chinese Society for Electrical Engineering!
+
 [2017.03] My first regular(educational) paper entitled "The Application of Integral Transform Method to Solve the Boundary Value Problem of Electrostatic Field" has been accepted by the [Journal of EEE](https://d.wanfangdata.com.cn/periodical/dqdzjxxb201702024).
