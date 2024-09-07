@@ -52,6 +52,4 @@ If you have bugfixes and enhancements that you would like to submit as a pull re
 Unfortunately, one logistical issue with a template theme like Academic Pages that makes it a little tricky to get bug fixes and updates to the core theme. If you use this template and customize it, you will probably get merge conflicts if you attempt to synchronize. If you want to save your various .yml configuration files and markdown files, you can delete the repository and fork it again. Or you can manually patch.
 
 
-![visitor badge](https://visitor-badge.glitch.me/badge?page_id=thuqining.visitor-badge&left_color=red&right_color=green&left_text=HelloVisitors)
-
 
