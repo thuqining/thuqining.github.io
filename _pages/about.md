@@ -16,6 +16,8 @@ I received my B.S. degree in Electrical Engineering from Tianjin University, Tia
 Highlights
 ======
 
+[2024.09] Our regular paper entitled "Long-Term Energy Management for Microgrid with Hybrid Hydrogen-Battery Energy Storage: A Prediction-Free Coordinated Optimization Framework" has been accepted by the [Applied Energy](https://arxiv.org/abs/2407.21698)!
+
 [2024.07] Our conference paper entitled "Reliability-Aware Probabilistic Reserve Procurement under Decision-Dependent Uncertainty" won the [Best Paper Award](https://www.linkedin.com/posts/ning-qi-805173210_happy-to-win-the-best-paper-of-ieee-pes-general-activity-7221775130690011136-My_6?utm_source=share&utm_medium=member_desktop) (Top 5%) from the IEEE PES General Meeting 2024!
 
 [2024.06] Our regular paper entitled "Mitigation of overvoltage in LVDC distribution system with constant power load using generic energy storage system" has been accepted by the [Journal of Energy Storage](https://www.sciencedirect.com/science/article/pii/S2352152X24021406).
