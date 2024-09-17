@@ -15,7 +15,7 @@ I received my B.S. degree in Electrical Engineering from Tianjin University, Tia
 
 Highlights
 ======
-[2024.09] My [talk](../files/Chance-Constrained Generalized Energy Storage Operations under Decision-Dependent Uncertainty.pdf) at California Institute of Technology: "Chance-Constrained Generalized Energy Storage Operations under Decision-Dependent Uncertainty"
+[2024.09] My [talk](../files/Caltech2024) at California Institute of Technology: "Chance-Constrained Generalized Energy Storage Operations under Decision-Dependent Uncertainty"
 
 [2024.09] Our regular paper entitled "Long-Term Energy Management for Microgrid with Hybrid Hydrogen-Battery Energy Storage: A Prediction-Free Coordinated Optimization Framework" has been accepted by the [Applied Energy](https://arxiv.org/abs/2407.21698)!
 
