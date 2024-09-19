@@ -17,7 +17,7 @@ Highlights
 ======
 [2024.09] My [talk](../files/Caltech2024) at California Institute of Technology: "Chance-Constrained Generalized Energy Storage Operations under Decision-Dependent Uncertainty"
 
-[2024.09] Our regular paper entitled "Long-Term Energy Management for Microgrid with Hybrid Hydrogen-Battery Energy Storage: A Prediction-Free Coordinated Optimization Framework" has been accepted by the [Applied Energy](https://arxiv.org/abs/2407.21698)!
+[2024.09] Our regular paper entitled "Long-Term Energy Management for Microgrid with Hybrid Hydrogen-Battery Energy Storage: A Prediction-Free Coordinated Optimization Framework" has been accepted by the [Applied Energy](https://www.sciencedirect.com/science/article/pii/S0306261924018683)!
 
 [2024.07] Our conference paper entitled "Reliability-Aware Probabilistic Reserve Procurement under Decision-Dependent Uncertainty" won the [Best Paper Award](https://www.linkedin.com/posts/ning-qi-805173210_happy-to-win-the-best-paper-of-ieee-pes-general-activity-7221775130690011136-My_6?utm_source=share&utm_medium=member_desktop) (Top 5%) from the IEEE PES General Meeting 2024!
 
