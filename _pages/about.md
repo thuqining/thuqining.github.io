@@ -25,7 +25,7 @@ Highlights
 
 [2024.06] Our regular paper entitled "Mitigation of overvoltage in LVDC distribution system with constant power load using generic energy storage system" has been accepted by the [Journal of Energy Storage](https://www.sciencedirect.com/science/article/pii/S2352152X24021406).
 
-[2024.04] My [talk](../files/AATALK.pdf) at Aalto University: "Unlocking the Reliable Flexibility from Generalized Energy Storage Resources"
+[2024.04] My [lecture](../files/AATALK.pdf) at Aalto University: "Unlocking the Reliable Flexibility from Generalized Energy Storage Resources"
 
 [2024.01] Honored to receive the Outstanding Reviewer Award again by the [Renewable Energy](http://www.kzsny.com/)!
 
