@@ -19,6 +19,10 @@ Highlights
 
 [2024.12] My [talk](../files/ECE_2024.pdf) at Energy Conversion and Economics 2024: "Measurement, Forecasting, and Control of Reliable Flexibility for Electric Vehicle Loads"
 
+[2024.11] Our regular paper entitled "Problem-Driven Scenario Reduction Framework for Power System Stochastic Operation" has been accepted by the [IEEE Transactions on Power Systems](https://ieeexplore.ieee.org/abstract/document/10816526)!
+
+[2024.11] Our regular paper entitled "Real-time hosting capacity assessment for electric vehicles: A sequential forecast-then-optimize method" has been accepted by the [Applied Energy](https://www.sciencedirect.com/science/article/pii/S0306261924024188)!
+
 [2024.10] My [talk](../files/informs_talk_2024.pdf) at Informs Annual Meeting 2024: "Pricing Energy Storage for Social-Welfare Maximization"
 
 [2024.09] My [talk](../files/Caltecth_talk_2024.pdf) at California Institute of Technology: "Chance-Constrained Generalized Energy Storage Operations under Decision-Dependent Uncertainty"
