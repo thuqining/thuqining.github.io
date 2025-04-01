@@ -17,7 +17,7 @@ Highlights
 ======
 [2025.03] Honored to receive the Outstanding Reviewer Award again by the [Renewable Energy](http://www.kzsny.com/)!
 
-[2025.03] Our regular paper entitled "Problem-Driven Scenario Reduction Framework for Power System Stochastic Operation" has been accepted by the [IEEE Transactions on Power Systems](https://ieeexplore.ieee.org/abstract/document/10816526)!
+[2025.03] Our regular paper entitled "LiFePO4 Battery SOC Estimation under OCV-SOC Curve Error Based on Adaptive Multi-Model Kalman Filter" has been accepted by the [IEEE Transactions on Transportation Electrification](https://arxiv.org/abs/2410.23646)!
 
 [2024.12&2025.01] My [talk](../files/Tsinghuatalk_2024.pdf) at Tsinghua University, Tianjin Univeristy and Shanghai Jiao Tong University: "Towards Net-Zero: The Role of Generalized Energy Storage Systems"
 
