@@ -15,7 +15,7 @@ I received my B.S. degree in Electrical Engineering from Tianjin University, Tia
 
 Highlights
 ======
-[2025.03] Honored to receive the Outstanding Reviewer Award again by the [IEEE Transactions on Smart Grid](../files/TSG_Recognitions.pdf)!
+[2025.03] Honored to receive the 2024 Top5 Outstanding Reviewer Award by the [IEEE Transactions on Smart Grid](../files/TSG_Recognitions.pdf)!
 
 [2025.03] Our regular paper entitled "LiFePO4 Battery SOC Estimation under OCV-SOC Curve Error Based on Adaptive Multi-Model Kalman Filter" has been accepted by the [IEEE Transactions on Transportation Electrification](https://arxiv.org/abs/2410.23646)!
 
