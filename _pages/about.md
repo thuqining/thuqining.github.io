@@ -15,6 +15,8 @@ I received my B.S. degree in Electrical Engineering from Tianjin University, Tia
 
 Highlights
 ======
+[2024.12] My [talk](../files/informs_talk_2024.pdf) at Energy Conversion and Economics 2024: "Measurement, Forecasting, and Control of Reliable Flexibility for Electric Vehicle Loads"
+
 [2024.10] My [talk](../files/informs_talk_2024.pdf) at Informs Annual Meeting 2024: "Pricing Energy Storage for Social-Welfare Maximization"
 
 [2024.09] My [talk](../files/Caltecth_talk_2024.pdf) at California Institute of Technology: "Chance-Constrained Generalized Energy Storage Operations under Decision-Dependent Uncertainty"
