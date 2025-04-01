@@ -15,6 +15,10 @@ I received my B.S. degree in Electrical Engineering from Tianjin University, Tia
 
 Highlights
 ======
+[2025.03] Honored to receive the Outstanding Reviewer Award again by the [Renewable Energy](http://www.kzsny.com/)!
+
+[2025.03] Our regular paper entitled "Problem-Driven Scenario Reduction Framework for Power System Stochastic Operation" has been accepted by the [IEEE Transactions on Power Systems](https://ieeexplore.ieee.org/abstract/document/10816526)!
+
 [2024.12&2025.01] My [talk](../files/Tsinghuatalk_2024.pdf) at Tsinghua University, Tianjin Univeristy and Shanghai Jiao Tong University: "Towards Net-Zero: The Role of Generalized Energy Storage Systems"
 
 [2024.12] My [talk](../files/ECE_2024.pdf) at Energy Conversion and Economics 2024: "Measurement, Forecasting, and Control of Reliable Flexibility for Electric Vehicle Loads"
