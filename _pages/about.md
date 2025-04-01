@@ -15,7 +15,9 @@ I received my B.S. degree in Electrical Engineering from Tianjin University, Tia
 
 Highlights
 ======
-[2024.12] My [talk](../files/informs_talk_2024.pdf) at Energy Conversion and Economics 2024: "Measurement, Forecasting, and Control of Reliable Flexibility for Electric Vehicle Loads"
+[2024.12&2025.01] My [talk](../files/Tsinghuatalk_2024.pdf) at Tsinghua University, Tianjin Univeristy and Shanghai Jiao Tong University: "Towards Net-Zero: The Role of Generalized Energy Storage Systems"
+
+[2024.12] My [talk](../files/ECE_2024.pdf) at Energy Conversion and Economics 2024: "Measurement, Forecasting, and Control of Reliable Flexibility for Electric Vehicle Loads"
 
 [2024.10] My [talk](../files/informs_talk_2024.pdf) at Informs Annual Meeting 2024: "Pricing Energy Storage for Social-Welfare Maximization"
 
