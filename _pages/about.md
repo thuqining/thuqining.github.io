@@ -17,7 +17,7 @@ Highlights
 ======
 [2025.03] Honored to receive the 2024 Top5 Outstanding Reviewer Award by the [IEEE Transactions on Smart Grid](../files/TSG_Recognitions.pdf)!
 
-[2025.03] Our regular paper entitled "LiFePO4 Battery SOC Estimation under OCV-SOC Curve Error Based on Adaptive Multi-Model Kalman Filter" has been accepted by the [IEEE Transactions on Transportation Electrification](https://arxiv.org/abs/2410.23646)!
+[2025.03] Our regular paper entitled "LiFePO4 Battery SOC Estimation under OCV-SOC Curve Error Based on Adaptive Multi-Model Kalman Filter" has been accepted by the [IEEE Transactions on Transportation Electrification](https://ieeexplore.ieee.org/document/10951115)!
 
 [2024.12&2025.01] My [talk](../files/Tsinghuatalk_2024.pdf) at Tsinghua University, Tianjin Univeristy and Shanghai Jiao Tong University: "Towards Net-Zero: The Role of Generalized Energy Storage Systems"
 
