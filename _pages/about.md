@@ -19,6 +19,10 @@ Highlights
 
 [2025.06] Our regular paper entitled "Locational Energy Storage Bid Bounds for Facilitating Social Welfare Convergence" has been accepted by the [IEEE Transactions on Energy Markets, Policy and Regulation](https://ieeexplore.ieee.org/abstract/document/11034735)!
 
+[2025.05] Our regular paper entitled "Sharing energy in wider area: A two-layer energy sharing scheme for massive prosumers" has been accepted by the [Applied Energy](https://www.sciencedirect.com/science/article/abs/pii/S0306261925006981)!
+
+[2025.05] Our regular paper entitled "Locational Energy Storage Bid Bounds for Facilitating Social Welfare Convergence" has been accepted by the [IEEE Transactions on Energy Markets, Policy and Regulation](https://ieeexplore.ieee.org/abstract/document/11034735)!
+
 [2025.03] Honored to receive the 2024 Top5 Outstanding Reviewer Award by the [IEEE Transactions on Smart Grid](../files/TSG_Recognitions.pdf)!
 
 [2025.03] Our regular paper entitled "LiFePO4 Battery SOC Estimation under OCV-SOC Curve Error Based on Adaptive Multi-Model Kalman Filter" has been accepted by the [IEEE Transactions on Transportation Electrification](https://ieeexplore.ieee.org/document/10951115)!
