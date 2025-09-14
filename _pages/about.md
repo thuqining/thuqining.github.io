@@ -16,7 +16,7 @@ I received my B.S. degree in Electrical Engineering from Tianjin University, Tia
 
 Highlights
 ======
-[2025.07] My invited [talk](../files/GM2025.pdf) at IEEE PES GM 2025-storage panel (co-chair).
+[2025.07] My invited [talk](../files/GM2025.pdf) at IEEE PES GM 2025, Panel: energy storage management for efficient market integration and operation (first time to be the co-chair and panelist).
 
 [2025.06] Our regular paper entitled "Capacity credit evaluation of generalized energy storage considering strategic capacity withholding and decision-dependent uncertainty" has been accepted by the [Applied Energy](https://www.sciencedirect.com/science/article/abs/pii/S0306261925010402)!
 
