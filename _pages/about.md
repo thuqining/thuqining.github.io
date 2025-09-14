@@ -16,7 +16,7 @@ I received my B.S. degree in Electrical Engineering from Tianjin University, Tia
 
 Highlights
 ======
-[2025.07] My [invited talk](../files/02-Strategic Battery Behaviors and Enhanced Market Designs-Ning.pdf) at IEEE PES GM 2025-storage panel (co-chair).
+[2025.07] My invited [talk](../files/02-Strategic Battery Behaviors and Enhanced Market Designs-Ning.pdf) at IEEE PES GM 2025-storage panel (co-chair).
 
 [2025.06] Our regular paper entitled "Capacity credit evaluation of generalized energy storage considering strategic capacity withholding and decision-dependent uncertainty" has been accepted by the [Applied Energy](https://www.sciencedirect.com/science/article/abs/pii/S0306261925010402)!
 
