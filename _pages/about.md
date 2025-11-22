@@ -7,7 +7,7 @@ redirect_from:
   - /about/
   - /about.html
 ---
-I am a postdoctoral research scientist in Earth and Environmental Engineering at Columbia University, hosted by [Prof. Bolun Xu](https://www.eee.columbia.edu/faculty/bolun-xu). My research interest include data-driven modeling, optimization under uncertainty, and market design for power systems with generalized energy storage (DERs). I am currently serving as the Youth Editorial Board Member of [Power System Protection and Control](https://www.dlbh.net/dlbh/ch/index.aspx), [Protection and Control of Modern Power Systems
+I am a postdoctoral research scientist in Earth and Environmental Engineering at Columbia University, hosted by [Prof. Bolun Xu](https://www.eee.columbia.edu/faculty/bolun-xu). My research interests include behavior modeling, decision-making under uncertainty, and market design for power systems with generalized energy storage (DERs). I am currently serving as the Youth Editorial Board Member of [Power System Protection and Control](https://www.dlbh.net/dlbh/ch/index.aspx), [Protection and Control of Modern Power Systems
 ](https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=10352418), [Energy Conversion and Economics](https://ietresearch.onlinelibrary.wiley.com/journal/26341581), and [Energy Storage and Applications](https://www.mdpi.com/journal/esa/announcements/9365), as well as the associated editor of [IEEE Data Description](https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=10347231).
     
 
