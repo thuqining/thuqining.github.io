@@ -16,7 +16,7 @@ I received my B.S. degree in Electrical Engineering from Tianjin University, Tia
 
 Highlights
 ======
-[2025.10] Our regular paper entitled "Grid-Aware Real-Time Dispatch of Microgrid with Generalized Energy Storage: A Prediction-Free Online Optimization Approach" has been accepted by the [IEEE Transactions on Smart Grid](https://www.sciencedirect.com/science/article/abs/pii/S0306261925010402](https://ieeexplore.ieee.org/document/11222877)!
+[2025.10] Our regular paper entitled "Grid-Aware Real-Time Dispatch of Microgrid with Generalized Energy Storage: A Prediction-Free Online Optimization Approach" has been accepted by the [IEEE Transactions on Smart Grid](https://ieeexplore.ieee.org/document/11222877)!
 
 [2025.07] My invited [talk](../files/GM2025.pdf) at IEEE PES GM 2025, Panel: energy storage management for efficient market integration and operation (first time to be the co-chair and panelist).
 
