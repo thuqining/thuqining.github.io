@@ -237,7 +237,7 @@ section h2 { font-size: 30px; margin: 0 0 18px; }
 .hl-meta .me { color: var(--ink-2); font-weight: 700; }
 
 /* explore cards */
-.explore { display: grid; grid-template-columns: repeat(3, 1fr); gap: 13px; }
+.explore { display: grid; grid-template-columns: repeat(4, 1fr); gap: 13px; }
 .explore a {
   display: block; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
   padding: 18px; color: var(--ink); font-weight: 600;
