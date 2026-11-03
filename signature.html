@@ -35,7 +35,6 @@
 <main class="wrap wrap-wide">
 
 <!-- ================= SIGNATURE CONTRIBUTIONS ================= -->
-<!-- Each row: animated panels side by side on top (assets/signature.js, assets/synfuel-*.js), text below -->
 <section id="signature" class="sig-page">
   <article class="sig-row sig-wide">
     <div class="sig-panels sig-p2">
@@ -124,54 +123,6 @@
       <h3>Storage bidding and market power mitigation</h3>
     </div>
   </article>
-  <article class="sig-row sig-wide">
-    <div class="sig-panels sig-pmap">
-      <figure class="sig-panel">
-        <figcaption><b>Geographic</b> chokepoints close, home production starts</figcaption>
-        <div class="sig-art sig-map">
-          <img src="images/synfuel_corridors_world.jpg" alt="World map of the cheapest secure synthetic-fuel supply corridors, with routes and cost premiums" loading="lazy">
-          <canvas id="sig5acts" aria-label="Three acts: normal trade along the corridors, chokepoints disrupted, and security value outweighing the cost premium so that domestic synthetic fuel is built"></canvas>
-        </div>
-        <p class="sig-legend">
-          <span class="lg-row">
-          <span class="lg-cat" title="low cost, high demand"><i style="background:#A63603"></i>Build-first</span>
-          <span class="lg-cat" title="low cost, low demand"><i style="background:#0072B2"></i>Export-oriented</span>
-          <span class="lg-cat" title="high cost, high demand"><i style="background:#F3C64B"></i>Supply-strained</span>
-          <span class="lg-cat" title="high cost, low demand"><i style="background:#F7F7F7"></i>Limited potential</span>
-          <span class="lg-route"><span class="lg-fos"></span>fossil fuel</span>
-          <span class="lg-route"><span class="lg-syn"></span>synthetic fuel</span>
-          <span class="lg-route"><span class="lg-build"></span>build at home</span>
-          </span>
-        </p>
-        <div class="sig-math sig-mathstrip">
-          <p><b>cost premium ≤ security margin</b><span>⇒ build at home; security margin = expected disruption loss avoided</span></p>
-          <div class="sig-strip">
-            <p class="sig-act" id="sig5cap">① normal trade</p>
-            <canvas class="sig-bars" id="sig5bars" aria-label="Cost premium, security value and net premium of domestic synthetic fuel"></canvas>
-          </div>
-        </div>
-
-        <p class="sig-plinks"><span class="badge ur">Nature Energy, under review</span></p>
-      </figure>
-      <figure class="sig-panel">
-        <figcaption><b>Security value</b> triples the CO<sub>2</sub> abatement that pays off</figcaption>
-        <canvas class="sig-art" id="sig5macc" aria-label="Abatement cost curves for 139 economies: blocks sorted by cost premium; subtracting the security value moves imported-supply blocks below zero, so abatement that pays off grows from 0.27 to 0.85 GtCO2 per year at 2030 costs"></canvas>
-        <p class="sig-legend">
-          <span class="lg-row">
-          <span class="lg-cat"><i style="background:var(--accent)"></i>pays off on fuel cost</span>
-          <span class="lg-cat"><i style="background:var(--accent-2)"></i>pays off with security value</span>
-          <span class="lg-cat"><i style="background:color-mix(in srgb, var(--ink-3) 45%, transparent)"></i>costlier</span>
-          </span>
-        </p>
-        <p class="sig-math sig-pmath">net premium = cost premium − security margin ≤ 0<span>CO<sub>2</sub> abatement that pays off: 0.27 → 0.85 GtCO<sub>2</sub>/yr at 2030 costs, 139 economies</span></p>
-        <p class="sig-plinks"><a href="https://thuqining.github.io/synfuel-energy-security/" target="_blank" rel="noopener" title="Energy security can accelerate domestic synthetic fuel adoption and CO2 abatement">Project page</a></p>
-      </figure>
-    </div>
-    <div class="sig-body">
-      <p class="sig-kicker">Energy policy and energy security</p>
-      <h3>Energy security accelerates synthetic-fuel adoption</h3>
-    </div>
-  </article>
 </section>
 
 </main>
@@ -185,8 +136,5 @@
 
 <script src="assets/site.js"></script>
 <script src="assets/signature.js?v=20261104h"></script>
-<script src="assets/synfuel-acts.js?v=20261104h"></script>
-<script src="assets/synfuel-macc-data.js?v=20261104h"></script>
-<script src="assets/synfuel-macc.js?v=20261104h"></script>
 </body>
 </html>
