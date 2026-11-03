@@ -1,4 +1,6 @@
-/* Animated panels for the signature contributions on the home page (sig1-sig5; sig4 and sig5 below).
+/* Animated panels for the signature contributions (Signature Work page; sig1-sig5, plus the left/middle panels
+   sig1a offline reference learning, sig2a three ways to handle P(u), sig3a monotone stepwise bids and
+   sig3b one-dimensional value functions, defined after panel 4).
    1  Prediction-free, explainable storage control: close up, the state of charge is decided hour by hour
       with no forecast while tracking an interpretable reference; the view then zooms out to a full year,
       where the online trajectory nearly coincides with the hindsight optimum.
@@ -11,8 +13,8 @@
    Colors come from the site's CSS variables (light and dark themes). Respects prefers-reduced-motion and
    pauses when the section is off screen. */
 (function () {
-  const cvs = ["sig1", "sig2", "sig3", "sig4", "sig5"].map((id) => document.getElementById(id));
-  if (!cvs[0] || !cvs[1] || !cvs[2] || !cvs[3]) return;   // sig5 (energy security) is an image now
+  const cvs = ["sig1", "sig2", "sig3", "sig4", "sig5", "sig1a", "sig2a", "sig3a", "sig3b", "sig4b"].map((id) => document.getElementById(id));
+  if (!cvs[0] || !cvs[1] || !cvs[2] || !cvs[3] || !cvs[5] || !cvs[6] || !cvs[7] || !cvs[8] || !cvs[9]) return;   // sig5 (energy security) is an image now
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const WARM = "#e0703a";
 
@@ -59,6 +61,15 @@
     x.strokeStyle = rgba(col, 0.16); x.lineWidth = wide; path(); x.stroke();
     x.strokeStyle = col; x.lineWidth = thin; path(); x.stroke();
   }
+  // axis lines with a rotated y label and an x label at the right end
+  const PL = 46, PT = 64;   // shared plot frame: left axis and top of every chart, so panels in a row line up
+  function axes(x, P, L, T, R, B, xl, yl) {
+    x.strokeStyle = rgba(P.ink3, 0.7); x.lineWidth = 1;
+    x.beginPath(); x.moveTo(L, T); x.lineTo(L, B); x.lineTo(R, B); x.stroke();
+    x.font = "600 11px Inter, sans-serif"; x.fillStyle = P.ink2;
+    if (xl) { const tw = x.measureText(xl).width; x.fillText(xl, (L + R - tw) / 2, B + 15); }
+    if (yl) { const tw = x.measureText(yl).width; x.save(); x.translate(L - 30, (T + B) / 2 + tw / 2); x.rotate(-Math.PI / 2); x.fillText(yl, 0, 0); x.restore(); }
+  }
   // standard normal tail P(Z > z) (Abramowitz-Stegun)
   function tail(z) {
     const t = 1 / (1 + 0.2316419 * Math.abs(z)), d = 0.3989423 * Math.exp(-z * z / 2);
@@ -98,8 +109,8 @@
     if (cyc === 0) k0 = nextK0;
     if (cyc === 750) nextK0 = 300 + Math.floor(Math.random() * 7900);
     const zoom = (s, anchor) => {      // s = 0: close-up ending at anchor; s = 1: the whole year
-      const W = W0 * Math.exp(logZ * s), c = (anchor - 30) + (NH / 2 - (anchor - 30)) * s;
-      let a = c - W / 2, b = c + W / 2;
+      const W = W0 * Math.exp(logZ * s);   // "now" stays at 45% of the window, so the unseen future shows on its right
+      let a = anchor - 0.45 * W, b = a + W;
       if (a < 0) { b -= a; a = 0; } if (b > NH) { a -= b - NH; b = NH; }
       return [a, b, W];
     };
@@ -128,14 +139,15 @@
   function draw1() {
     const [x, w, h] = fit(cvs[0]), P = pal();
     x.clearRect(0, 0, w, h); grid(x, w, h, P);
-    const gw = 52, L = 22, R = w - gw - 34, T = 40, B = h - 34, v = (view1 = window1());
+    const gw = 52, L = PL, R = w - gw - 34, T = PT, B = h - 52, v = (view1 = window1());
+    axes(x, P, L, T - 6, R, B, "time (hour → year)", "state of charge");
     const X = (k) => L + (R - L) * (k - v.a) / (v.b - v.a), Y = (s) => B - (B - T) * s, n = Math.round(R - L);
     x.save(); x.beginPath(); x.rect(L - 2, T - 30, R - L + 4, B - T + 34); x.clip();
     // calendar: day lines close up, month lines zoomed out
     x.font = "600 10.5px Inter, sans-serif"; x.lineWidth = 1;
     if (v.W <= 24 * 20) for (let d = Math.ceil(v.a / 24); d * 24 <= v.b; d++) {
       x.strokeStyle = rgba(P.ink3, 0.28); x.beginPath(); x.moveTo(X(d * 24), T); x.lineTo(X(d * 24), B); x.stroke();
-      if (v.W <= 24 * 6) { x.fillStyle = P.ink3; x.fillText("day " + (d + 1), X(d * 24) + 4, T + 12); }
+      if (v.W <= 24 * 6 && X(d * 24) + 48 < R) { x.fillStyle = P.ink3; x.fillText("day " + (d + 1), X(d * 24) + 4, T + 12); }
     }
     if (v.W >= 24 * 45) MDAY.forEach((d, i) => {
       const px = X(d * 24); if (px < L - 1 || px > R) return;
@@ -150,6 +162,24 @@
         const q = PR1[k]; x.fillStyle = rgba(P.ink3, (0.16 + 0.3 * q) * pa);
         x.fillRect(X(k) - bwid / 2, B - (B - T) * 0.32 * q, bwid, (B - T) * 0.32 * q);
       }
+    }
+    // the future is unseen: shaded beyond "now" (prices unknown, no forecast); lifts as the year completes
+    const fa = 1 - v.fut, fx = X(v.head) + 7;
+    if (fa > 0.02 && fx < R) {
+      const g = x.createLinearGradient(fx, 0, Math.min(R, fx + 70), 0);
+      g.addColorStop(0, rgba(P.ink3, 0.04 * fa)); g.addColorStop(1, rgba(P.ink3, 0.17 * fa));
+      x.fillStyle = g; x.fillRect(fx, T - 30, R - fx + 4, B - T + 34);
+      x.globalAlpha = fa;
+      x.font = "700 30px Fraunces, Georgia, serif"; x.fillStyle = rgba(P.ink2, 0.75);   // one bouncing question mark
+      const qw = x.measureText("?").width;
+      if (R - fx > qw + 12) x.fillText("?", (fx + R - qw) / 2, (T + B) / 2 + 10 - 14 * Math.abs(Math.sin(t1 / 14)));
+      x.font = "italic 14px Fraunces, Georgia, serif";
+      const msg = "future unseen", mw = x.measureText(msg).width;
+      if (R - fx > mw + 20) { x.fillStyle = P.ink2; x.fillText(msg, (fx + R - mw) / 2, T + 26); }
+      x.setLineDash([3, 4]); x.strokeStyle = rgba(P.ink2, 0.7); x.lineWidth = 1.2;
+      x.beginPath(); x.moveTo(fx - 7, T - 4); x.lineTo(fx - 7, B); x.stroke(); x.setLineDash([]);
+      label(x, "now", fx - 3, B - 6, P.ink2, 11, 700);
+      x.globalAlpha = 1;
     }
     // learned SOC reference and its tracking band
     const rs = series(R1, v.a, v.b, 0, NH - 1, X, Math.min(n, 240));
@@ -201,12 +231,12 @@
     x.strokeStyle = P.ink2; x.lineWidth = 1.8; x.strokeRect(bx, by, bw, bh);
     x.fillStyle = P.ink2; x.fillRect(bx + bw / 2 - 7, by - 6, 14, 6);
     x.fillStyle = rgba(P.accent, 0.85); x.fillRect(bx + 4, by + 4 + (bh - 8) * (1 - lv), bw - 8, (bh - 8) * lv);
-    label(x, Math.round(lv * 100) + "%", bx + 2, B + 20, P.ink3, 12);
+    label(x, Math.round(lv * 100) + "%", bx + 2, B + 16, P.ink3, 12);
     // legend
     let lx = L;
     [["prices, unknown ahead", P.ink3, pa > 0.3], ["SOC reference", P.accent2, true], ["online SOC", P.accent, true],
      ["hindsight optimum", WARM, v.hind > 0.05]].forEach(([txt, col, on]) => {
-      if (!on) return; tag(x, txt, lx, B + 22, col, 13.5); lx += x.measureText(txt).width + 16;
+      if (!on) return; tag(x, txt, lx, B + 38, col, 13.5); lx += x.measureText(txt).width + 16;
     });
   }
 
@@ -227,8 +257,9 @@
     const target = hoverU !== null ? hoverU : 0.5 + 0.45 * Math.sin(t2 / 150);
     uNow += (target - uNow) * 0.08;
     const u = uNow;
-    const L = 22, DW = Math.min(150, w * 0.2), R = w - DW - 28, T = 44, B = h - 54, N = 110;
+    const L = PL, DW = Math.min(150, w * 0.2), R = w - DW - 28, T = PT, B = h - 54, N = 110;
     const x0 = L + (R - L) * 0.18, lim = T + (B - T) * 0.10;
+    axes(x, P, L, T - 6, R, B + 6, "time", "uncertainty ξ");
     const X = (k) => x0 + (R - x0) * k;
     const mean = (k) => B - (B - T) * (0.30 + 0.16 * k + 0.20 * u * k + 0.035 * Math.sin(k * 5 + t2 / 60));
     const sig = (k) => (B - T) * (0.025 + 0.20 * u * k + 0.02 * k);
@@ -238,6 +269,8 @@
     x.setLineDash([3, 4]); x.strokeStyle = rgba(P.ink3, 0.6); x.lineWidth = 1;
     x.beginPath(); x.moveTo(x0, T - 10); x.lineTo(x0, B + 6); x.stroke(); x.setLineDash([]);
     label(x, "now", x0 + 5, B - 4, P.ink3, 11);
+    // everything inside the chart frame
+    x.save(); x.beginPath(); x.rect(L, T - 6, R - L, B + 12 - T); x.clip();
     // quantile bands
     [[1.96, 0.08], [1.28, 0.11], [0.67, 0.15]].forEach(([z, a]) => {
       x.fillStyle = rgba(P.accent, a); x.beginPath();
@@ -262,6 +295,7 @@
     });
     const mp = []; for (let i = 0; i <= N; i++) { const k = i / N; mp.push([X(k), mean(k)]); }
     halo(x, P.accent, 9, 2.8, () => smooth(x, mp));
+    x.restore();
     // limit and bound violations
     x.setLineDash([7, 6]); x.strokeStyle = P.ink; x.lineWidth = 1.3;
     x.beginPath(); x.moveTo(L, lim); x.lineTo(w - 14, lim); x.stroke(); x.setLineDash([]);
@@ -270,7 +304,7 @@
       x.strokeStyle = WARM; x.lineWidth = 2.2; x.lineCap = "round";
       x.beginPath(); x.moveTo(hx - 5, hy - 5); x.lineTo(hx + 5, hy + 5); x.moveTo(hx + 5, hy - 5); x.lineTo(hx - 5, hy + 5); x.stroke();
     });
-    if (hits.length) tag(x, hits.length + " bound violations", Math.min(R - 150, hits[0][0] + 10), lim + 20, WARM, 13);
+    if (hits.length) tag(x, hits.length + (hits.length === 1 ? " bound violation" : " bound violations"), Math.min(R - 150, hits[0][0] + 10), lim + 20, WARM, 13);
     // end-of-horizon density drawn sideways, tail beyond the limit shaded
     const mu = mean(1), sd = sig(1), dx0 = R + 18;
     const dens = (y) => Math.exp(-0.5 * ((y - mu) / sd) ** 2);
@@ -336,10 +370,12 @@
     const prog = on ? 1 : cyc / SW3;                              // withholding pressure
     const enf = on ? ease((cyc - SW3) / 45) : 0;                  // how strongly the bounds hold
     const flash = on && cyc - SW3 < 50 ? 1 - (cyc - SW3) / 50 : 0;
-    const IW = Math.min(170, w * 0.24), L = 22, R = w - IW - 34, T = 44, B = h - 34;
+    const IW = Math.min(170, w * 0.24), L = PL, R = w - IW - 34, T = PT, B = h - 62;
+    axes(x, P, L, T - 6, R, B, "time", "price ($/MWh)");
     const X = (q) => L + (R - L) * q;
     const pr = (q) => T + (B - T) * (0.46 + 0.16 * Math.sin(q * 6.5 + t3 / 110) + 0.06 * Math.sin(q * 17 + t3 / 50));
     const bw = (q) => (B - T) * (0.15 + 0.03 * Math.sin(q * 9 + t3 / 80));
+    x.save(); x.beginPath(); x.rect(L, T - 6, R - L, B + 6 - T); x.clip();
     // bounds: a faint dashed yardstick during detection, solid and enforced during mitigation
     x.fillStyle = rgba(P.accent2, 0.06 + 0.12 * enf); x.beginPath();
     for (let i = 0; i <= N3; i++) { const q = i / N3; x.lineTo(X(q), pr(q) - bw(q)); }
@@ -359,7 +395,7 @@
     const flag = { 1: null, "-1": null };
     let excess = 0;
     bids.forEach((b) => {
-      const p0 = pr(b.q), half = bw(b.q), yRaw = Math.max(T - 30, Math.min(B + 6, p0 - b.s * half * b.f));
+      const p0 = pr(b.q), half = bw(b.q), yRaw = Math.max(T, Math.min(B - 4, p0 - b.s * half * b.f));
       const tgt = p0 - b.s * half * Math.min(b.f, 1), out = b.f > 1 && b.q < 1;
       const y = out ? yRaw + (tgt - yRaw) * enf : yRaw, px = X(b.q), ex = Math.abs(y - tgt);
       const hot = out && ex > 2;
@@ -381,8 +417,9 @@
       const f = flag[s]; if (!f) return;
       x.font = "italic 13px Fraunces, Georgia, serif";
       const tw = x.measureText(txt).width, fx = Math.min(R - tw, Math.max(L, X(f[0]) - tw / 2));
-      tag(x, txt, fx, s > 0 ? Math.max(T - 16, f[1] - 12) : Math.min(B + 2, f[1] + 20), WARM, 13);
+      tag(x, txt, fx, s > 0 ? Math.max(T + 12, f[1] - 12) : Math.min(B - 6, f[1] + 20), WARM, 13);
     });
+    x.restore();
     // which bound is which (price rises upward)
     x.font = "600 11.5px Inter, sans-serif"; x.lineWidth = 3.5; x.strokeStyle = rgba(P.card, 0.9); x.lineJoin = "round";
     [["discharge bid bound  b̄", pr(0.02) - bw(0.02) - 7], ["charge bid bound  b̲", pr(0.02) + bw(0.02) + 16]].forEach(([txt, yy]) => {
@@ -397,7 +434,7 @@
     x.fillStyle = rgba(P.card, 0.9); x.strokeStyle = rgba(P.ink3, 0.5); x.lineWidth = 1;
     x.beginPath(); x.roundRect ? x.roundRect(ix, iy, IW, ih, 8) : x.rect(ix, iy, IW, ih); x.fill(); x.stroke();
     label(x, "welfare loss", ix + 10, iy + 18, WARM, 11.5, 700);
-    label(x, "= sum of orange excess", ix + 10, iy + 33, P.ink3, 10.5);
+    if (IW >= 150) label(x, "= sum of orange excess", ix + 10, iy + 33, P.ink3, 10.5);
     const gx = (i) => gx0 + (gx1 - gx0) * i / (NI - 1), gy = (v) => iy + ih - 12 - (ih - 64) * v, sw = SW3 / (C3 / NI);
     [[0, sw, rgba(WARM, 0.09), "① detect", !on], [sw, NI - 1, rgba(P.accent2, 0.12), "② mitigate", on]].forEach(([a, b, bg, n, act]) => {
       x.fillStyle = bg; x.fillRect(gx(a), iy + 42, gx(b) - gx(a), gy(0) - iy - 42);
@@ -417,13 +454,14 @@
     const lx = ix + IW / 2 - 10, ly = iy + ih + 12;
     x.strokeStyle = P.ink2; x.lineWidth = 2; x.beginPath(); x.arc(lx + 10, ly + 8, 6, Math.PI, 0); x.stroke();
     x.fillStyle = P.ink2; x.beginPath(); x.roundRect ? x.roundRect(lx + 2, ly + 8, 16, 13, 2) : x.rect(lx + 2, ly + 8, 16, 13); x.fill();
-    label(x, "privacy-preserving", ix + IW / 2 - 50, B + 22, P.ink3, 11.5, 600);
+    { x.font = "700 11px Inter, sans-serif"; const tw = x.measureText("privacy-preserving").width;   // always shown under the lock
+      label(x, "privacy-preserving", ix + (IW - tw) / 2, ly + 36, P.ink2, 11, 700); }
     // legend: ▲ discharge offer, ▼ charge bid, bounds, clearing price
-    let lx2 = L;
+    let lx2 = 16;
     [["discharge offer", P.accent, 1], ["charge bid", P.accent2, -1], ["bid bounds", P.accent2, 0], ["clearing price", P.ink2, 0]]
-      .forEach(([txt, col, s]) => {
-        if (s) { x.fillStyle = col; tri(x, lx2 + 5, B + 17, s, 5); x.fill(); lx2 += 14; }
-        tag(x, txt, lx2, B + 22, col, 13);
+      .filter((e, i) => w >= 640 || i < 3).forEach(([txt, col, s]) => {
+        if (s) { x.fillStyle = col; tri(x, lx2 + 5, B + 35, s, 5); x.fill(); lx2 += 14; }
+        tag(x, txt, lx2, B + 40, col, 13);
         lx2 += x.measureText(txt).width + 14;
       });
   }
@@ -463,18 +501,25 @@
     const cyc = t4 % 720, ph = cyc < 200 ? 0 : cyc < 400 ? 1 : cyc < 600 ? 2 : 3;
     const e = (s) => { const k = Math.max(0, Math.min(1, s)); return k * k * (3 - 2 * k); };
     const mapT = ph === 0 ? e(cyc / 170) : 1, clT = ph === 0 ? 0 : ph === 1 ? e((cyc - 200) / 120) : 1, backT = ph < 2 ? 0 : ph === 2 ? e((cyc - 400) / 140) : 1;
-    const T = 52, B = h - 40, gap = 54, half = (w - 44 - gap) / 2;
-    const LB = [22, T, 22 + half, B], RB = [22 + half + gap, T, w - 22, B];
+    const T = PT, B = h - 78, gap = 70, half = (w - PL - 16 - gap) / 2;
+    const LB = [PL, T, PL + half, B], RB = [PL + half + gap, T, w - 16, B];
     // the two spaces
     [[LB, "uncertainty space  ξ"], [RB, "decision space  x*(ξ)"]].forEach(([[x0, y0, x1, y1], ttl]) => {
       x.fillStyle = rgba(P.card, 0.65); x.strokeStyle = rgba(P.ink3, 0.45); x.lineWidth = 1;
       x.beginPath(); x.roundRect ? x.roundRect(x0, y0, x1 - x0, y1 - y0, 10) : x.rect(x0, y0, x1 - x0, y1 - y0); x.fill(); x.stroke();
-      tag(x, ttl, x0 + 10, y1 + 22, P.ink2, 13.5);
+      tag(x, ttl, x0 + 4, y1 + 38, P.ink2, 13.5);
     });
-    const Lp = (p) => [LB[0] + (LB[2] - LB[0]) * (0.5 + 0.3 * p.a + 0.012 * Math.sin(t4 / 70 + p.ph)), LB[1] + (LB[3] - LB[1]) * (0.5 - 0.3 * p.b + 0.012 * Math.cos(t4 / 60 + p.ph))];
-    const Rp = (p) => [RB[0] + (RB[2] - RB[0]) * (0.5 + 0.42 * p.d1), RB[1] + (RB[3] - RB[1]) * (0.5 - 0.40 * p.d2)];
+    // each space is a chart: its frame edges are the axes
+    [[LB, "ξ₁", "ξ₂"], [RB, "z₁*", "z₂*"]].forEach(([[x0, y0, x1, y1], ax, ay]) => {
+      x.font = "600 11px Inter, sans-serif"; x.fillStyle = P.ink2;
+      const tw = x.measureText(ax).width; x.fillText(ax, (x0 + x1 - tw) / 2, y1 + 15);
+      x.save(); x.translate(x0 - 10, (y0 + y1) / 2 + 6); x.rotate(-Math.PI / 2); x.fillText(ay, 0, 0); x.restore();
+    });
+    const cl4 = (f) => Math.max(0.07, Math.min(0.93, f));   // keep every scenario inside its box
+    const Lp = (p) => [LB[0] + (LB[2] - LB[0]) * cl4(0.5 + 0.3 * p.a + 0.012 * Math.sin(t4 / 70 + p.ph)), LB[1] + (LB[3] - LB[1]) * cl4(0.5 - 0.3 * p.b + 0.012 * Math.cos(t4 / 60 + p.ph))];
+    const Rp = (p) => [RB[0] + (RB[2] - RB[0]) * cl4(0.5 + 0.42 * p.d1), RB[1] + (RB[3] - RB[1]) * cl4(0.5 - 0.40 * p.d2)];
     // arrow between spaces
-    const ay = (T + B) / 2, ax0 = LB[2] + 8, ax1 = RB[0] - 8;
+    const ay = (T + B) / 2, ax0 = LB[2] + 8, ax1 = RB[0] - 24;   // stop short of the right chart's axis name
     x.strokeStyle = rgba(P.ink2, 0.7); x.lineWidth = 1.6;
     x.beginPath(); x.moveTo(ax0, ay - 10); x.lineTo(ax1, ay - 10); x.stroke();
     x.beginPath(); x.moveTo(ax1 - 6, ay - 15); x.lineTo(ax1, ay - 10); x.lineTo(ax1 - 6, ay - 5); x.stroke();
@@ -527,6 +572,400 @@
               : cyc < 400 ? "② cluster by decision impact, pick representatives"
               : "③ map representatives back: a few scenarios that matter";
     chip(x, msg, 16, 34, P.accent2, rgba(P.accent2, 0.12));
+  }
+
+  /* ---------- 1a: offline reference learning (left of panel 1) ---------- */
+  // Hindsight-optimal SOC trajectories of past years (daily means) are drawn in, weighted by how similar each
+  // year is to today (kernel regression), and averaged into the SOC reference that panel 1 tracks online.
+  const ND = 365, RD = new Float32Array(ND), YRS = ["2019", "2020", "2021", "2022", "2023", "2024"];
+  const KW = [0.08, 0.27, 0.05, 0.33, 0.10, 0.17], PY = YRS.map(() => new Float32Array(ND));
+  {
+    for (let d = 0; d < ND; d++) { let m = 0; for (let k = d * 24; k < d * 24 + 24; k++) m += R1[k]; RD[d] = m / 24; }
+    let seed = 11; const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
+    const pert = YRS.map((_, s) => {
+      const a = 0.05 + 0.07 * rnd(), ph = 6.28 * rnd(), b = 0.025 + 0.03 * rnd(), ps = 6.28 * rnd(), p = new Float32Array(ND);
+      let z = 0;
+      for (let d = 0; d < ND; d++) { z = 0.93 * z + (rnd() - 0.5) * 0.03; p[d] = a * Math.sin(2 * Math.PI * d / ND + ph) + b * Math.sin(2 * Math.PI * d * 9 / ND + ps) + z; }
+      return p;
+    });
+    for (let d = 0; d < ND; d++) {   // remove the weighted mean so the weighted average of past years is the reference
+      const m = pert.reduce((acc, p, s) => acc + KW[s] * p[d], 0);
+      YRS.forEach((_, s) => { PY[s][d] = Math.max(0.03, Math.min(0.97, RD[d] + pert[s][d] - m)); });
+    }
+  }
+  let t1a = 0;
+  const C1A = 760, KWMAX = Math.max(...KW);
+  function draw1a() {
+    const [x, w, h] = fit(cvs[5]), P = pal();
+    x.clearRect(0, 0, w, h); grid(x, w, h, P);
+    t1a += 1;
+    const c = reduce ? 700 : t1a % C1A;
+    const L = PL, R = w - 92, T = PT, B = h - 52;
+    const X = (d) => L + (R - L) * d / (ND - 1), Y = (s) => B - (B - T) * s;
+    axes(x, P, L, T - 6, R, B, "day of year", "state of charge");
+    x.font = "600 10.5px Inter, sans-serif"; x.lineWidth = 1;
+    MDAY.forEach((d, i) => {
+      x.strokeStyle = rgba(P.ink3, 0.22); x.beginPath(); x.moveTo(X(d), T); x.lineTo(X(d), B); x.stroke();
+      if (i % 2 === 0) { x.fillStyle = P.ink3; x.fillText(MONTHS[i], X(d) + 3, T + 12); }
+    });
+    const wk = c < 260 ? 0 : ease((c - 260) / 120);        // how far the kernel weights have been applied
+    // past years, drawn in one after another
+    YRS.forEach((yr, s) => {
+      const k = reduce ? 1 : Math.max(0, Math.min(1, (c - s * 40) / 70));
+      if (k <= 0) return;
+      const rel = KW[s] / KWMAX, al = (1 - wk) * 0.55 + wk * (0.12 + 0.75 * rel), lw = (1 - wk) * 1.3 + wk * (0.8 + 2.4 * rel);
+      x.strokeStyle = rgba(P.ink2, al); x.lineWidth = lw; x.beginPath();
+      const n = Math.floor((ND - 1) * k);
+      for (let d = 0; d <= n; d += 2) { const px = X(d), py = Y(PY[s][d]); d ? x.lineTo(px, py) : x.moveTo(px, py); }
+      x.stroke();
+    });
+    // kernel weights per year (similarity of that year's features to today)
+    const cx = R + 14, bmax = w - cx - 46;
+    label(x, "weight", cx, T - 4, P.ink3, 10.5, 700);
+    YRS.forEach((yr, s) => {
+      const yy = T + 14 + s * 19, shown = reduce || c >= s * 40;
+      label(x, yr, cx, yy + 8, shown ? P.ink2 : rgba(P.ink3, 0.4), 11, 600);
+      x.fillStyle = rgba(P.ink3, 0.15); x.fillRect(cx + 34, yy, bmax, 9);
+      x.fillStyle = rgba(P.accent2, 0.85); x.fillRect(cx + 34, yy, bmax * (KW[s] / KWMAX) * wk, 9);
+    });
+    // weighted average: the learned SOC reference and its tracking band
+    const rk = reduce ? 1 : Math.max(0, Math.min(1, (c - 420) / 130));
+    if (rk > 0) {
+      const n = Math.floor((ND - 1) * rk);
+      x.fillStyle = rgba(P.accent2, 0.13); x.beginPath();
+      for (let d = 0; d <= n; d++) x.lineTo(X(d), Y(RD[d] + 0.07));
+      for (let d = n; d >= 0; d--) x.lineTo(X(d), Y(RD[d] - 0.07)); x.fill();
+      x.setLineDash([6, 6]); x.strokeStyle = P.accent2;
+      halo(x, P.accent2, 8, 2.4, () => { x.beginPath(); for (let d = 0; d <= n; d++) d ? x.lineTo(X(d), Y(RD[d])) : x.moveTo(X(d), Y(RD[d])); });
+      x.setLineDash([]);
+    }
+    // hand-off to the online panel
+    if (c >= 560 || reduce) {
+      const pulse = 0.5 + 0.5 * Math.sin(t1a / 9), ay = T + 14 + 6 * 19 + 26;
+      x.strokeStyle = rgba(P.accent2, 0.5 + 0.5 * pulse); x.lineWidth = 2.4; x.lineCap = "round";
+      x.beginPath(); x.moveTo(cx, ay); x.lineTo(w - 14, ay); x.moveTo(w - 21, ay - 6); x.lineTo(w - 14, ay); x.lineTo(w - 21, ay + 6); x.stroke();
+      label(x, "to online", cx, ay + 18, P.accent2, 11, 700);
+    }
+    let lx = L;
+    [["past years, hindsight-optimal", P.ink2, true], ["learned SOC reference", P.accent2, rk > 0]].forEach(([txt, col, on]) => {
+      if (!on) return; tag(x, txt, lx, B + 38, col, 13.5); lx += x.measureText(txt).width + 16;
+    });
+  }
+  function overlay1a() {
+    const [x] = fit(cvs[5]), P = pal(), c = reduce ? 700 : t1a % C1A;
+    const msg = c < 260 ? "① past years: hindsight-optimal SOC"
+              : c < 420 ? "② weight each year by similarity to today"
+              : c < 560 ? "③ weighted average → SOC reference" : "④ reference handed to online control";
+    chip(x, msg, 16, 34, P.accent2, rgba(P.accent2, 0.12));
+  }
+
+  /* ---------- 2a: three ways to handle P(u), by how much is known about it (left of panel 2) ---------- */
+  // The same decision u as panel 2 sets the spread of P(u). With only moments, a robust approximation for
+  // unimodal distributions needs margin z = sqrt(4/(9ε) − 1) ≈ 2.81σ; with samples, a data-driven
+  // (Wasserstein) reformulation needs less; with the distribution known, the iterative algorithm uses the exact
+  // quantile 1.645σ. Less information, more conservative.
+  const EPS = 0.05, MODES = [
+    { name: "robust", info: "moments only", z: Math.sqrt(4 / (9 * EPS) - 1) },
+    { name: "data-driven", info: "samples", z: 2.12 },   // illustrative: the margin depends on the radius r(u) and K
+    { name: "iterative", info: "known distribution", z: 1.645 },
+  ];
+  const samp2 = Array.from({ length: 46 }, () => gauss());
+  let t2a = 0;
+  function draw2a() {
+    const [x, w, h] = fit(cvs[6]), P = pal();
+    x.clearRect(0, 0, w, h); grid(x, w, h, P);
+    t2a += 1;
+    const CM = 260, m = reduce ? 2 : Math.floor(t2a / CM) % 3, c = reduce ? CM - 1 : t2a % CM;
+    const MC = [WARM, P.accent, P.accent2];
+    const L = PL, R = w - 22, T = PT, Bp = T + (h - T) * 0.42, sg = 0.3 + 0.7 * uNow;
+    const mx = L + (R - L) * 0.16, k = (R - 12 - mx) / (MODES[0].z * 1.0);
+    const Xz = (z) => mx + k * sg * z, peak = (Bp - T - 10);
+    const dens = (z) => Math.exp(-0.5 * z * z);
+    // axis
+    axes(x, P, L, T - 6, R, Bp, "uncertainty ξ ∼ P(u)", "density");
+    x.save(); x.beginPath(); x.rect(L + 1, T - 6, R - L - 1, Bp + 10 - T); x.clip();   // curves stay inside the axes
+    // what each mode knows about P(u)
+    const fade = Math.min(1, c / 40);
+    if (m === 0) {        // mean and spread only
+      x.setLineDash([4, 4]); x.strokeStyle = rgba(P.ink3, 0.55); x.lineWidth = 1.4; x.beginPath();
+      for (let i = -60; i <= 60; i++) { const z = i / 15; x.lineTo(Xz(z), Bp - peak * dens(z)); } x.stroke(); x.setLineDash([]);
+      label(x, "shape unknown", Xz(0.5), T + 6, P.ink3, 11, 600);
+      x.strokeStyle = rgba(WARM, fade); x.lineWidth = 2;
+      x.beginPath(); x.moveTo(Xz(-1), Bp - peak * 0.6); x.lineTo(Xz(1), Bp - peak * 0.6); x.stroke();
+      [-1, 1].forEach((z) => { x.beginPath(); x.moveTo(Xz(z), Bp - peak * 0.6 - 6); x.lineTo(Xz(z), Bp - peak * 0.6 + 6); x.stroke(); });
+      label(x, "μ ± σ", Xz(-0.3), Bp - peak * 0.6 - 9, rgba(WARM, fade), 11.5, 700);
+    } else if (m === 1) { // samples arrive one by one
+      const nS = Math.min(samp2.length, Math.floor(c / 4));
+      const bins = new Array(16).fill(0);
+      for (let i = 0; i < nS; i++) { const z = samp2[i], bi = Math.floor((z + 3) / 6 * 16); if (bi >= 0 && bi < 16) bins[bi]++; }
+      bins.forEach((n, bi) => {
+        const z0 = -3 + bi * 6 / 16, bw = Xz(z0 + 6 / 16) - Xz(z0), hh = peak * n / 11;
+        x.fillStyle = rgba(P.accent, 0.22); x.fillRect(Xz(z0) + 1, Bp - hh, bw - 2, hh);
+      });
+      for (let i = 0; i < nS; i++) { x.fillStyle = rgba(P.accent, 0.85); x.beginPath(); x.arc(Xz(samp2[i]), Bp + 6, 2.3, 0, 7); x.fill(); }
+      label(x, nS + " samples", Xz(0.6), T + 6, P.accent, 11, 700);
+    } else {              // the distribution itself
+      x.fillStyle = rgba(P.accent2, 0.18 * fade); x.strokeStyle = rgba(P.accent2, fade); x.lineWidth = 1.8; x.beginPath();
+      x.moveTo(Xz(-4), Bp); for (let i = -60; i <= 60; i++) { const z = i / 15; x.lineTo(Xz(z), Bp - peak * dens(z)); } x.lineTo(Xz(4), Bp); x.fill(); x.stroke();
+      x.fillStyle = rgba(WARM, 0.55 * fade); x.beginPath(); x.moveTo(Xz(1.645), Bp);
+      for (let z = 1.645; z <= 4; z += 0.05) x.lineTo(Xz(z), Bp - peak * dens(z)); x.lineTo(Xz(4), Bp); x.fill();
+      label(x, "tail = ε", Xz(1.9), Bp - peak * 0.22, WARM, 11, 700);
+    }
+    // the 1 − ε quantile each mode certifies
+    MODES.forEach((md, i) => {
+      const px = Xz(md.z), on = i === m;
+      x.setLineDash(on ? [] : [3, 4]); x.strokeStyle = rgba(MC[i], on ? 1 : 0.4); x.lineWidth = on ? 2.4 : 1.2;
+      x.beginPath(); x.moveTo(px, T + 12); x.lineTo(px, Bp); x.stroke(); x.setLineDash([]);
+    });
+    x.restore();
+    x.fillStyle = P.ink; x.beginPath(); x.arc(mx, Bp, 3.5, 0, 7); x.fill();
+    label(x, "μ(u)", mx - 12, Bp + 18, P.ink2, 11.5, 600);
+    // margin needed by each mode
+    const r0 = Bp + 30, rh = (h - 28 - r0) / 3, xb0 = L + 158, xb1 = R - 46, bl = (z) => (xb1 - xb0) * z / MODES[0].z;
+    MODES.forEach((md, i) => {
+      const yy = r0 + i * rh, on = i === m, col = MC[i];
+      label(x, md.name, 16, yy + 11, on ? col : P.ink3, 12, 700);
+      x.font = "700 12px Inter, sans-serif"; const nw = x.measureText(md.name).width;
+      label(x, "· " + md.info, 16 + nw + 6, yy + 11, on ? P.ink2 : rgba(P.ink3, 0.7), 11, 500);
+      x.fillStyle = rgba(P.ink3, 0.12); x.fillRect(xb0, yy + 1, bl(MODES[0].z), 12);
+      x.fillStyle = rgba(col, on ? 0.9 : 0.35); x.fillRect(xb0, yy + 1, bl(md.z), 12);
+      label(x, i === 1 ? "r(u), K" : md.z.toFixed(2) + "σ", xb0 + bl(md.z) + 6, yy + 11, on ? col : P.ink3, 11, 700);
+    });
+    tag(x, "more information → smaller margin, lower cost", 16, h - 10, P.ink2, 13);
+  }
+  function overlay2a() {
+    const [x] = fit(cvs[6]), P = pal(), m = reduce ? 2 : Math.floor(t2a / 260) % 3;
+    const msg = ["① moments only → robust approximation", "② samples → data-driven reformulation", "③ known distribution → iterative algorithm"][m];
+    const col = [WARM, P.accent, P.accent2][m];
+    chip(x, msg, 16, 34, col, rgba(col, 0.12));
+  }
+
+  /* ---------- 3a: stepwise bids over SOC segments, monotone in SOC and in risk aversion (left of panel 3) ---------- */
+  // The marginal value of stored energy falls with SOC and rises with price uncertainty σ (risk aversion), so the
+  // segment-wise discharge offers and charge bids do too; the opportunity cost bound b̄ follows the same shape.
+  const NSEG = 10, ETA = 0.92;
+  const mval = (e, s) => 16 + 52 * Math.pow(1 - e, 1.35) + s * (8 + 34 * (1 - e));
+  let t3a = 0;
+  const MDEG = 6;   // marginal degradation cost M [$/MWh]
+  function draw3a() {
+    const [x, w, h] = fit(cvs[7]), P = pal();
+    x.clearRect(0, 0, w, h); grid(x, w, h, P);
+    t3a += 1;
+    const sgm = reduce ? 0.7 : 0.5 + 0.5 * Math.sin(t3a / 130), soc = 0.5 + 0.42 * Math.sin(t3a / 210 + 1);
+    const L = PL, R = w - 16, T = PT, B = h - 62, PM = 130;
+    const X = (e) => L + (R - L) * e, Y = (p) => B - (B - T) * p / PM;
+    axes(x, P, L, T - 6, R, B, "state of charge e", "bid ($/MWh)");
+    [0, 50, 100].forEach((p) => label(x, String(p), L - 22, Y(p) + 4, P.ink3, 10.5));
+    label(x, "0%", L - 4, B + 15, P.ink3, 10.5); label(x, "100%", R - 28, B + 15, P.ink3, 10.5);
+    // active SOC segment
+    const si = Math.min(NSEG - 1, Math.floor(soc * NSEG));
+    x.fillStyle = rgba(P.accent, 0.07); x.fillRect(X(si / NSEG), T - 6, (R - L) / NSEG, B - T + 6);
+    const steps = (f, s) => { x.beginPath(); for (let i = 0; i < NSEG; i++) { const y = Y(f(mval((i + 0.5) / NSEG, s))); i ? x.lineTo(X(i / NSEG), y) : x.moveTo(X(0), y); x.lineTo(X((i + 1) / NSEG), y); } };
+    const dis = (v) => MDEG + v / ETA, chg = (v) => ETA * v;    // discharge bid A = M + v/η, charge bid D = η v
+    // ghost steps at the lowest and highest price uncertainty
+    [0, 1].forEach((s) => { x.strokeStyle = rgba(P.ink3, 0.35); x.lineWidth = 1; x.setLineDash([2, 3]); steps(dis, s); x.stroke(); x.setLineDash([]); });
+    halo(x, P.accent, 7, 2.4, () => steps(dis, sgm));
+    halo(x, P.accent2, 7, 2.4, () => steps(chg, sgm));
+    // markers on the active segment
+    const ex = X((si + 0.5) / NSEG), vd = mval((si + 0.5) / NSEG, sgm);
+    x.fillStyle = P.accent; tri(x, ex, Y(dis(vd)) - 1, 1, 5.5); x.fill();
+    x.fillStyle = P.accent2; tri(x, ex, Y(chg(vd)) + 1, -1, 5.5); x.fill();
+    // battery icon riding on the SOC axis
+    const bx = X(soc) - 9, by = B + 29;
+    x.strokeStyle = P.ink2; x.lineWidth = 1.4; x.strokeRect(bx, by, 18, 9); x.fillStyle = P.ink2; x.fillRect(bx + 18, by + 3, 2, 3);
+    x.fillStyle = rgba(P.accent, 0.85); x.fillRect(bx + 1.5, by + 1.5, 15 * soc, 6);
+    // labels in clear space: above the highest discharge steps, below the lowest charge steps
+    tag(x, "discharge bid A", X(0.03), Y(dis(mval(0.05, 1))) - 8, P.accent, 12.5);
+    tag(x, "charge bid D", X(0.03), Y(chg(mval(0.05, 0))) + 22, P.accent2, 12.5);
+    // price-uncertainty slider
+    const sy = h - 14, sx0 = L + 100, sx1 = R;
+    x.strokeStyle = rgba(P.ink3, 0.5); x.lineWidth = 3; x.lineCap = "round";
+    x.beginPath(); x.moveTo(sx0, sy); x.lineTo(sx1, sy); x.stroke();
+    x.strokeStyle = WARM; x.beginPath(); x.moveTo(sx0, sy); x.lineTo(sx0 + (sx1 - sx0) * sgm, sy); x.stroke();
+    x.fillStyle = P.card; x.strokeStyle = WARM; x.lineWidth = 2.2;
+    x.beginPath(); x.arc(sx0 + (sx1 - sx0) * sgm, sy, 6.5, 0, 7); x.fill(); x.stroke();
+    tag(x, "price uncertainty σ", 12, sy + 4, WARM, 13);
+  }
+  function overlay3a() {
+    const [x] = fit(cvs[7]), P = pal();
+    chip(x, "SOC ↑ → bids ↓ · σ ↑ → bids ↑", 16, 34, P.accent, rgba(P.accent, 0.12));
+  }
+
+  /* ---------- 3b: cone-constrained PCA of the storage value function (middle of panel 3) ---------- */
+  // Each time step's value function q_t over N SOC segments is an N-dimensional vector. With the mean q̄ and the
+  // leading cone-constrained principal direction ν* (monotone non-increasing), every step is rebuilt as
+  // q̂_t = q̄ + ŵ_t ν* from one nonnegative score ŵ_t = max(0, ⟨q_t − q̄, ν*⟩): rank 1, one number sets the curve.
+  const NE = 40, NHR = 16;
+  const qbar = (e) => 0.10 + 0.30 * Math.pow(1 - e, 1.5), nu = (e) => 0.55 * Math.pow(1 - e, 1.8);
+  const hrs = Array.from({ length: NHR }, (_, i) => ({ w: 0.05 + 0.92 * (0.5 + 0.5 * Math.sin(i * 2.4 + 0.7)), dv: (Math.random() - 0.5) * 0.13, f: 1 + (i % 3) }));   // residual off the rank-1 line, visible in the PCA view
+  let t3b = 0;
+  function draw3b() {
+    const [x, w, h] = fit(cvs[8]), P = pal();
+    x.clearRect(0, 0, w, h); grid(x, w, h, P);
+    t3b += 1;
+    const C = 260 + 4 * 115, c = reduce ? C - 1 : t3b % C;
+    const k1 = reduce ? 1 : Math.min(1, c / 130);                          // Q fills column by column
+    const k2 = reduce ? 1 : Math.max(0, Math.min(1, (c - 140) / 110));   // q̄, ν* and the scores ŵᵀ
+    const st = c < 260 ? -1 : [2, 7, 11, 14][Math.min(3, Math.floor((c - 260) / 115))];   // the step whose bid is shown
+    const q = (e, hr) => qbar(e) + hr.w * nu(e) + hr.dv * Math.sin(Math.PI * e * hr.f) * (1 - e);
+    // top: Q (N × T) ≈ q̄ 1ᵀ + ν* ŵᵀ
+    const NR = 10, my = 52, mh = 64, W = w - 32;
+    const qw = W * 0.36, cw = 9, rw = W * 0.30, sym = 18;
+    let cx = 16;
+    const cap = (t, x0, wd, on) => { x.font = "700 11px Inter, sans-serif"; const tw = x.measureText(t).width; x.fillStyle = on ? P.ink2 : rgba(P.ink3, 0.45); x.fillText(t, x0 + (wd - tw) / 2, my + mh + 14); };
+    const op = (t, on) => { x.font = "700 15px Inter, sans-serif"; x.fillStyle = on ? P.ink : rgba(P.ink3, 0.35); x.fillText(t, cx + 3, my + mh / 2 + 5); cx += sym; };
+    const nCol = Math.ceil(NHR * k1);
+    for (let i = 0; i < NHR; i++) for (let r = 0; r < NR; r++) {
+      const v = i < nCol ? q(r / (NR - 1), hrs[i]) : 0;
+      x.fillStyle = i < nCol ? rgba(P.accent, 0.12 + 0.85 * Math.min(1, v / 0.95)) : rgba(P.ink3, 0.08);
+      x.fillRect(cx + i * qw / NHR, my + r * mh / NR, qw / NHR - 0.8, mh / NR - 0.8);
+    }
+    const qx = cx;
+    if (st >= 0) { x.strokeStyle = WARM; x.lineWidth = 2; x.strokeRect(qx + st * qw / NHR - 1, my - 1, qw / NHR + 1, mh + 1); }
+    cap("Q  (N × T)", cx, qw, true); cx += qw + 2;
+    op("≈", k2 > 0.3);
+    for (let r = 0; r < NR; r++) { x.fillStyle = rgba(P.ink2, k2 * (0.15 + 0.8 * qbar(r / (NR - 1)) / 0.4)); x.fillRect(cx, my + r * mh / NR, cw, mh / NR - 0.8); }
+    cap("q̄", cx - 6, cw + 12, k2 > 0.3); cx += cw;
+    op("+", k2 > 0.3);
+    const bx0 = cx;
+    for (let r = 0; r < NR; r++) { x.fillStyle = rgba(WARM, k2 * (0.12 + 0.85 * nu(r / (NR - 1)) / 0.55)); x.fillRect(cx, my + r * mh / NR, cw, mh / NR - 0.8); }
+    cap("ν*", cx - 6, cw + 12, k2 > 0.3); cx += cw + 6;
+    const wy = my + mh / 2 - 6, wx = cx;
+    for (let i = 0; i < NHR; i++) {
+      const on = k2 * 1.6 - i / NHR * 0.6 > 0;
+      x.fillStyle = on ? rgba(P.accent2, 0.15 + 0.8 * hrs[i].w) : rgba(P.ink3, 0.08);
+      x.fillRect(cx + i * rw / NHR, wy, rw / NHR - 0.8, 12);
+    }
+    if (st >= 0) { x.strokeStyle = WARM; x.lineWidth = 2; x.strokeRect(wx + st * rw / NHR - 1, wy - 1, rw / NHR + 1, 14); }
+    cap("ŵᵀ", cx, rw, k2 > 0.3);
+    // bracket: the rank-1 term ν* ŵᵀ
+    const bx1 = cx + rw, by = my - 4;
+    x.strokeStyle = k2 > 0.5 ? WARM : rgba(P.ink3, 0.35); x.lineWidth = 1.4;
+    x.beginPath(); x.moveTo(bx0, by + 4); x.lineTo(bx0, by); x.lineTo(bx1, by); x.lineTo(bx1, by + 4); x.stroke();
+    x.font = "700 11px Inter, sans-serif"; const rk = "rank 1", rkw = x.measureText(rk).width;
+    x.fillStyle = P.card; x.fillRect((bx0 + bx1 - rkw) / 2 - 3, by - 11, rkw + 6, 12);
+    x.fillStyle = k2 > 0.5 ? WARM : rgba(P.ink3, 0.45); x.fillText(rk, (bx0 + bx1 - rkw) / 2, by - 1);
+    // bottom: the bid curve of the highlighted step, from q̂_t = q̄ + ŵ_t ν*
+    const L = PL, R = w - 16, T2 = my + mh + 34, B = h - 62, PM = 150;
+    const X = (e) => L + (R - L) * e, Y = (p) => B - (B - T2) * Math.min(PM, p) / PM;
+    axes(x, P, L, T2 - 4, R, B, "state of charge e", "bid ($/MWh)");
+    if (st >= 0) {
+      const hr = hrs[st], qh = (e) => (qbar(e) + hr.w * nu(e)) * 130;
+      const dis = (e) => MDEG + qh(e) / ETA, chg = (e) => ETA * qh(e);
+      const steps = (f) => { x.beginPath(); for (let i = 0; i < NSEG; i++) { const y = Y(f((i + 0.5) / NSEG)); i ? x.lineTo(X(i / NSEG), y) : x.moveTo(X(0), y); x.lineTo(X((i + 1) / NSEG), y); } };
+      const g = ease(((c - 260) % 115) / 30);
+      x.globalAlpha = g; halo(x, P.accent, 6, 2.2, () => steps(dis)); halo(x, P.accent2, 6, 2.2, () => steps(chg)); x.globalAlpha = 1;
+      // link from the score cell to the curve
+      x.setLineDash([3, 3]); x.strokeStyle = rgba(WARM, 0.8); x.lineWidth = 1.2;
+      const lkx = wx + (st + 0.5) * rw / NHR;
+      x.beginPath(); x.moveTo(lkx, wy + 14); x.lineTo(lkx, T2 - 6); x.stroke(); x.setLineDash([]);
+      x.font = "italic 12.5px Fraunces, Georgia, serif"; const t1 = "discharge A", t2 = "charge D";
+      tag(x, t1, R - x.measureText(t1).width - 2, Y(dis(0.85)) - 6, P.accent, 12.5);
+      tag(x, t2, L + 6, Math.min(B - 6, Y(chg(0.05)) + 26), P.accent2, 12.5);
+    }
+  }
+  function overlay3b() {
+    const [x] = fit(cvs[8]), P = pal(), C = 260 + 4 * 115, c = reduce ? C - 1 : t3b % C;
+    const msg = c < 140 ? "① value functions Q" : c < 260 ? "② rank-1 PCA" : "③ one number ŵ_t → bid curve";
+    const col = c < 140 ? P.accent : c < 260 ? WARM : P.accent2;
+    chip(x, msg, 16, 30, col, rgba(col, 0.12));
+  }
+
+  /* ---------- 4b: risk-averse (CVaR) iterative problem-driven scenario reduction (right of panel 4) ---------- */
+  // The same scenarios and the same two spaces as panel 4. The worst 10% of scenarios by cost (the CVaR tail, warm)
+  // sit in the decision space but get merged into ordinary clusters by the risk-neutral reduction, so the reduced
+  // set underestimates CVaR. Each iteration adds a representative inside the tail and maps it back; the CVaR of the
+  // representatives (weights = cluster masses) closes in on the CVaR of all scenarios.
+  const ALPHA = 0.9;
+  sc4.forEach((p) => { p.f = Math.exp(1.2 * (p.d1 + p.d2)); });   // cost grows toward the upper right of the decision space
+  const VAR4 = sc4.map((p) => p.f).sort((p, q) => p - q)[Math.floor(ALPHA * N4)];
+  sc4.forEach((p) => { p.tail = p.f >= VAR4; });
+  const tl4 = sc4.filter((p) => p.tail).sort((p, q) => q.f - p.f);
+  const tailMed = (() => {    // the tail scenario closest to the tail's centre
+    const m1 = tl4.reduce((a, p) => a + p.d1, 0) / tl4.length, m2 = tl4.reduce((a, p) => a + p.d2, 0) / tl4.length;
+    return tl4.reduce((b, p) => ((p.d1 - m1) ** 2 + (p.d2 - m2) ** 2 < (b.d1 - m1) ** 2 + (b.d2 - m2) ** 2 ? p : b), tl4[0]);
+  })();
+  const ADD4 = [tl4[0], tailMed === tl4[0] ? tl4[Math.min(2, tl4.length - 1)] : tailMed];
+  const SETS4 = [reps.slice(), reps.concat([ADD4[0]]), reps.concat(ADD4)];
+  const CVS4 = [0.6, 0.85, 0.98];   // illustrative share of CVaR(N) captured by the representatives after each iteration
+  const STEP4B = 170, C4B = 3 * STEP4B + 70, TAIL = "#d64532";   // tail in red, distinct from cluster colors
+  let t4b = 0;
+  function draw4b() {
+    const [x, w, h] = fit(cvs[9]), P = pal();
+    x.clearRect(0, 0, w, h); grid(x, w, h, P);
+    t4b += 1;
+    const c = reduce ? C4B - 1 : t4b % C4B, it = Math.min(2, Math.floor(c / STEP4B));
+    const kk = it === 0 ? 1 : c >= 3 * STEP4B ? 1 : ease((c % STEP4B) / 80);   // the new representative maps back
+    const lit = it === 0 ? ease((c - 60) / 50) : 1;                              // tail lights up after the start
+    const T = PT, B = h - 78, gap = 70, half = (w - PL - 16 - gap) / 2;
+    const LB = [PL, T, PL + half, B], RB = [PL + half + gap, T, w - 16, B];
+    [[LB, "uncertainty space  ξ"], [RB, "decision space  x*(ξ)"]].forEach(([[x0, y0, x1, y1], ttl]) => {
+      x.fillStyle = rgba(P.card, 0.65); x.strokeStyle = rgba(P.ink3, 0.45); x.lineWidth = 1;
+      x.beginPath(); x.roundRect ? x.roundRect(x0, y0, x1 - x0, y1 - y0, 10) : x.rect(x0, y0, x1 - x0, y1 - y0); x.fill(); x.stroke();
+      tag(x, ttl, x0 + 4, y1 + 38, P.ink2, 13.5);
+    });
+    [[LB, "ξ₁", "ξ₂"], [RB, "z₁*", "z₂*"]].forEach(([[x0, y0, x1, y1], ax, ay]) => {
+      x.font = "600 11px Inter, sans-serif"; x.fillStyle = P.ink2;
+      const tw = x.measureText(ax).width; x.fillText(ax, (x0 + x1 - tw) / 2, y1 + 15);
+      x.save(); x.translate(x0 - 10, (y0 + y1) / 2 + 6); x.rotate(-Math.PI / 2); x.fillText(ay, 0, 0); x.restore();
+    });
+    const cl = (f) => Math.max(0.07, Math.min(0.93, f));
+    const Lp = (p) => [LB[0] + (LB[2] - LB[0]) * cl(0.5 + 0.3 * p.a), LB[1] + (LB[3] - LB[1]) * cl(0.5 - 0.3 * p.b)];
+    const Rp = (p) => [RB[0] + (RB[2] - RB[0]) * cl(0.5 + 0.42 * p.d1), RB[1] + (RB[3] - RB[1]) * cl(0.5 - 0.40 * p.d2)];
+    const set = SETS4[it], nOld = SETS4[Math.max(0, it - 1)].length;
+    // assignment of every scenario to its nearest representative in the decision space
+    const own = (p, S) => { let k = 0; S.forEach((r, j) => { if ((p.d1 - r.d1) ** 2 + (p.d2 - r.d2) ** 2 < (p.d1 - S[k].d1) ** 2 + (p.d2 - S[k].d2) ** 2) k = j; }); return k; };
+    const colOf = (k) => (k < K4 ? P.accent : TAIL);   // risk-neutral representatives blue, tail representatives red
+    // decision space: links to representatives, scenarios, tail halo
+    sc4.forEach((p) => {
+      const k = own(p, kk >= 1 ? set : SETS4[Math.max(0, it - 1)]), r = (kk >= 1 ? set : SETS4[Math.max(0, it - 1)])[k];
+      const [px, py] = Rp(p), [rx, ry] = Rp(r);
+      x.strokeStyle = rgba(colOf(k), 0.22); x.lineWidth = 1; x.beginPath(); x.moveTo(rx, ry); x.lineTo(px, py); x.stroke();
+    });
+    sc4.forEach((p) => {
+      const [px, py] = Rp(p), [lx, ly] = Lp(p);
+      if (p.tail && lit > 0) {
+        x.fillStyle = rgba(TAIL, 0.18 * lit); x.beginPath(); x.arc(px, py, 9, 0, 7); x.fill(); x.beginPath(); x.arc(lx, ly, 9, 0, 7); x.fill();
+      }
+      const col = p.tail && lit > 0.5 ? TAIL : rgba(P.ink3, 0.65);
+      x.fillStyle = col; x.beginPath(); x.arc(px, py, 3.4, 0, 7); x.fill();
+      x.beginPath(); x.arc(lx, ly, 3.4, 0, 7); x.fill();
+    });
+    // representatives in both spaces; the newly added tail representative maps back along a dashed curve
+    set.forEach((r, k) => {
+      const [rx, ry] = Rp(r), [lx, ly] = Lp(r), isNew = k >= nOld && it > 0, col = colOf(k);
+      x.fillStyle = rgba(col, 0.22); x.beginPath(); x.arc(rx, ry, 13, 0, 7); x.fill();
+      x.fillStyle = col; x.strokeStyle = P.card; x.lineWidth = 2; x.beginPath(); x.arc(rx, ry, 6.5, 0, 7); x.fill(); x.stroke();
+      const e = isNew ? kk : 1;
+      if (isNew && e < 1) {
+        x.strokeStyle = rgba(TAIL, 0.85); x.lineWidth = 1.8; x.setLineDash([5, 4]);
+        x.beginPath(); x.moveTo(rx, ry); x.quadraticCurveTo((lx + rx) / 2, Math.min(B - 4, (ly + ry) / 2 + 34), rx + (lx - rx) * e, ry + (ly - ry) * e); x.stroke(); x.setLineDash([]);
+      }
+      if (e >= 1) {
+        x.fillStyle = rgba(col, 0.22); x.beginPath(); x.arc(lx, ly, 13, 0, 7); x.fill();
+        x.fillStyle = col; x.strokeStyle = P.card; x.lineWidth = 2; x.beginPath(); x.arc(lx, ly, 6.5, 0, 7); x.fill(); x.stroke();
+      }
+    });
+    if (lit > 0.5) { x.font = "italic 13px Fraunces, Georgia, serif"; const tw = x.measureText("CVaR tail (worst 10%)").width; tag(x, "CVaR tail (worst 10%)", RB[0] + 2, RB[1] - 5, TAIL, 13); }
+    // arrows between the spaces
+    const ay = (T + B) / 2, ax0 = LB[2] + 8, ax1 = RB[0] - 24;
+    x.strokeStyle = rgba(P.ink2, 0.7); x.lineWidth = 1.6;
+    x.beginPath(); x.moveTo(ax0, ay - 10); x.lineTo(ax1, ay - 10); x.moveTo(ax1 - 6, ay - 15); x.lineTo(ax1, ay - 10); x.lineTo(ax1 - 6, ay - 5); x.stroke();
+    x.strokeStyle = rgba(TAIL, 0.85);
+    x.beginPath(); x.moveTo(ax1, ay + 10); x.lineTo(ax0, ay + 10); x.moveTo(ax0 + 6, ay + 5); x.lineTo(ax0, ay + 10); x.lineTo(ax0 + 6, ay + 15); x.stroke();
+    // CVaR gauge: CVaR of the representatives against CVaR of all scenarios
+    const frac = it === 0 ? CVS4[0] : CVS4[it - 1] + (CVS4[it] - CVS4[it - 1]) * kk;
+    const gw = Math.min(150, w * 0.26), gx = w - 16 - gw, gy = 26;
+    label(x, "CVaR(ζ) / CVaR(N)", gx, gy - 4, P.ink2, 10.5, 700);
+    x.fillStyle = rgba(P.ink3, 0.2); x.fillRect(gx, gy + 2, gw, 9);
+    x.fillStyle = frac > 0.9 ? P.accent2 : TAIL; x.fillRect(gx, gy + 2, gw * frac, 9);
+    x.strokeStyle = P.ink; x.lineWidth = 1.5; x.beginPath(); x.moveTo(gx + gw, gy - 1); x.lineTo(gx + gw, gy + 14); x.stroke();
+  }
+  function overlay4b() {
+    const [x] = fit(cvs[9]), P = pal(), c = reduce ? C4B - 1 : t4b % C4B, it = Math.min(2, Math.floor(c / STEP4B));
+    const msg = it === 0 ? "① risk-neutral reduction misses the tail" : c < 3 * STEP4B ? "iteration " + it + ": add a tail representative" : "③ tail represented: CVaR(ζ) ≈ CVaR(N)";
+    const col = it === 0 ? "#d64532" : P.accent2;
+    chip(x, msg, 16, 34, col, rgba(col, 0.12));
   }
 
   /* ---------- 5: energy security and synthetic fuels ---------- */
@@ -614,9 +1053,9 @@
   }
   function overlay1() {
     const [x, w, h] = fit(cvs[0]), P = pal(), v = view1;
-    const msg = v.ph === 0 ? "① hour " + Math.floor(v.head) + " · deciding now, no forecast"
+    const msg = v.ph === 0 ? "① hour " + Math.floor(v.head) + " · decide now, track the reference"
               : v.ph === 1 ? "② zooming out: hours → a full year"
-              : v.ph === 2 ? "③ a year of operation ≈ hindsight optimum" : "zooming back in";
+              : v.ph === 2 ? "③ a year online ≈ hindsight optimum" : "zooming back in";
     chip(x, msg, 16, 34, v.ph === 2 ? WARM : P.accent, rgba(v.ph === 2 ? WARM : P.accent, 0.12));
   }
   function overlay2() {
@@ -649,7 +1088,10 @@
   const sec = document.getElementById("signature");
   if ("IntersectionObserver" in window && sec)
     new IntersectionObserver((e) => { visible = e[0].isIntersecting; if (visible && !reduce) run(); }, { rootMargin: "120px" }).observe(sec);
-  function frame() { step1(); draw1(); overlay1(); draw2(); overlay2(); draw3(); overlay3(); draw4(); overlay4(); if (cvs[4]) { draw5(); overlay5(); } }
+  function frame() {
+    step1(); draw1a(); overlay1a(); draw1(); overlay1(); draw2(); overlay2(); draw2a(); overlay2a();
+    draw3a(); overlay3a(); draw3b(); overlay3b(); draw3(); overlay3(); draw4(); overlay4(); draw4b(); overlay4b(); if (cvs[4]) { draw5(); overlay5(); }
+  }
   function run() { cancelAnimationFrame(raf); (function loop() { if (!visible) return; frame(); raf = requestAnimationFrame(loop); })(); }
   window.addEventListener("resize", () => frame());
   if (reduce) frame(); else run();

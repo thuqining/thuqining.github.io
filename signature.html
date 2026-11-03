@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=20261028z">
+<link rel="stylesheet" href="assets/style.css?v=20261104h">
 </head>
 <body>
 
@@ -27,104 +27,149 @@
   </div>
 </nav>
 
-<div class="wrap page-head">
+<div class="wrap wrap-wide page-head">
   <p class="eyebrow">Signature work</p>
   <h1>Pioneering Contributions</h1>
 </div>
 
-<main class="wrap">
+<main class="wrap wrap-wide">
 
 <!-- ================= SIGNATURE CONTRIBUTIONS ================= -->
+<!-- Each row: animated panels side by side on top (assets/signature.js, assets/synfuel-*.js), text below -->
 <section id="signature" class="sig-page">
-  <article class="sig-row">
-    <canvas class="sig-art" id="sig1" aria-label="Storage state of charge decided hour by hour without forecasts, then zoomed out to a full year where it nearly matches the hindsight optimum"></canvas>
+  <article class="sig-row sig-wide">
+    <div class="sig-panels sig-p2">
+      <figure class="sig-panel">
+        <figcaption><b>Offline learning</b> SOC reference from past years</figcaption>
+        <canvas class="sig-art" id="sig1a" aria-label="Hindsight-optimal state-of-charge trajectories of past years are weighted by their similarity to today and averaged into a learned SOC reference"></canvas>
+        <p class="sig-math sig-pmath">ĥ<sub>t</sub> = Σ<sub>s</sub> ω<sub>s,t</sub> h<sup>⋆</sup><sub>s,t</sub>,&nbsp; ω<sub>s,t</sub> ∝ exp(−‖ξ<sub>t</sub> − ξ<sub>s,t</sub>‖² / Wσ²)<span>kernel regression: hindsight-optimal SOC h<sup>⋆</sup> of historical scenarios s, weighted by the similarity of the recent net-load and SOC window ξ<sub>t</sub></span></p>
+        <p class="sig-plinks"><a href="https://scholar.google.com/scholar?q=%22Online%20Dispatch%20of%20Multi-duration%20Energy%20Storage%20in%20Low-carbon%20Microgrid%20with%20Explainable%20Reference%20Learning%22" target="_blank" rel="noopener" title="Online Dispatch of Multi-duration Energy Storage in Low-carbon Microgrid with Explainable Reference Learning">Applied Energy 2026</a>&nbsp;· <span class="badge award">ESI Highly Cited &amp; Hot Paper</span> <a href="https://doi.org/10.1016/j.apenergy.2024.124485" target="_blank" rel="noopener" title="Long-term Energy Management for Microgrid with Hybrid Hydrogen–Battery Energy Storage: A Prediction-free Coordinated Optimization Framework">Applied Energy 2025</a></p>
+      </figure>
+      <figure class="sig-panel">
+        <figcaption><b>Online control</b> hour by hour, the future unseen</figcaption>
+        <canvas class="sig-art" id="sig1" aria-label="Storage state of charge decided hour by hour with the future hidden, then zoomed out to a full year where it nearly matches the hindsight optimum"></canvas>
+        <p class="sig-math sig-pmath">x<sub>t</sub> = argmin<sub>x∈𝒳</sub> α⟨∂f<sub>t−1</sub>(x<sub>t−1</sub>), x − x<sub>t−1</sub>⟩ + αβ⟨Q<sub>t−1</sub>, [g<sub>t−1</sub>(x)]<sub>+</sub>⟩ + ‖x − x<sub>t−1</sub>‖²<span>online convex optimization with only past information, no forecast; f<sub>t</sub> includes the tracking penalty θ‖h<sub>t</sub> − ĥ<sub>t</sub>‖²; sublinear regret</span></p>
+        <p class="sig-plinks"><a href="https://doi.org/10.1109/TSG.2025.3627407" target="_blank" rel="noopener" title="Grid-Aware Real-Time Dispatch of Microgrid with Generalized Energy Storage: A Prediction-Free Online Optimization Approach">IEEE TSG 2026</a>&nbsp;· <a href="https://doi.org/10.48550/arXiv.2510.02985" target="_blank" rel="noopener" title="Real-time Peer-to-peer Energy Trading for Multi-microgrids: Improved Double Auction Mechanism and Prediction-free Online Trading Approach">Applied Energy 2026</a></p>
+      </figure>
+    </div>
     <div class="sig-body">
       <p class="sig-kicker">Trustworthy AI</p>
       <h3>Prediction-free, explainable storage control</h3>
-      <p class="sig-math">x<sub>t</sub> = argmin<sub>x</sub> f<sub>t</sub>(x) + λ‖s<sub>t</sub> − s<sub>t</sub><sup>ref</sup>‖²<span>online convex optimization + SoC reference learning + tracking</span></p>
-      <p class="sig-links">
-        <span class="badge award">ESI Highly Cited &amp; Hot Paper</span><br>
-        <a href="https://doi.org/10.1016/j.apenergy.2024.124485" target="_blank" rel="noopener">Applied Energy 2025</a>&nbsp;·
-        <a href="https://scholar.google.com/scholar?q=%22Online%20Dispatch%20of%20Multi-duration%20Energy%20Storage%20in%20Low-carbon%20Microgrid%20with%20Explainable%20Reference%20Learning%22" target="_blank" rel="noopener">Applied Energy 2026</a>&nbsp;·
-        <a href="https://doi.org/10.1109/TSG.2025.3627407" target="_blank" rel="noopener">IEEE TSG 2026</a>&nbsp;·
-        <a href="https://doi.org/10.48550/arXiv.2510.02985" target="_blank" rel="noopener">Applied Energy 2026</a>
-      </p>
     </div>
   </article>
-  <article class="sig-row sig-flip">
-    <canvas class="sig-art" id="sig2" aria-label="A scenario fan whose spread grows with the decision; scenarios that cross the bound are marked as violations"></canvas>
+  <article class="sig-row sig-wide">
+    <div class="sig-panels sig-p2">
+      <figure class="sig-panel">
+        <figcaption><b>Learning</b> P(u) from the information the data offers</figcaption>
+        <canvas class="sig-art" id="sig2a" aria-label="Three ways to handle the decision-dependent distribution: robust approximation with moments only, data-driven reformulation with samples, and an iterative algorithm with a known distribution; more information gives a smaller margin"></canvas>
+        <p class="sig-math sig-pmath">a(u)<sup>T</sup>μ(u) + F<sub>u</sub><sup>−1</sup>(1−ε) √(a(u)<sup>T</sup>Σa(u)) ≤ b(u)<span>F<sup>−1</sup> by what is known about P(u): robust, e.g. √((1−ε)/ε) with no assumption or √((4−9ε)/9ε) if unimodal · data-driven distributionally robust, moments estimated from K samples · iterative u<sup>(k)</sup> → ξ(u<sup>(k)</sup>) → F<sup>−1</sup> (known distribution)</span></p>
+        <p class="sig-plinks"><span class="badge award">Best Conference Paper</span> <a href="https://doi.org/10.1109/PESGM51994.2024.10689050" target="_blank" rel="noopener" title="Reliability-Aware Probabilistic Reserve Procurement under Decision-Dependent Uncertainty">PES GM 2024</a>&nbsp;· <a href="https://doi.org/10.1109/TSTE.2023.3262135" target="_blank" rel="noopener" title="Chance-Constrained Generic Energy Storage Operations under Decision-Dependent Uncertainty">IEEE TSTE 2023</a>&nbsp;· <a href="https://doi.org/10.1016/j.apenergy.2025.126310" target="_blank" rel="noopener" title="Capacity Credit Evaluation of Generalized Energy Storage Considering Strategic Capacity Withholding and Decision-Dependent Uncertainty">Applied Energy 2025</a></p>
+      </figure>
+      <figure class="sig-panel">
+        <figcaption><b>Optimization</b> chance-constrained, violations ≤ ε</figcaption>
+        <canvas class="sig-art" id="sig2" aria-label="A scenario fan whose spread grows with the decision; scenarios that cross the bound are marked as violations"></canvas>
+        <p class="sig-math sig-pmath">ℙ<sub>ξ∼P(u)</sub>[ a(u)<sup>T</sup>ξ(u) ≤ b(u) ] ≥ 1 − ε<span>uncertainty ξ shaped by decision u, e.g. available SOC bounds under incentives, or inflows under upstream releases</span></p>
+        <p class="sig-plinks"><a href="https://doi.org/10.1109/TSTE.2023.3262135" target="_blank" rel="noopener" title="Chance-Constrained Generic Energy Storage Operations under Decision-Dependent Uncertainty">IEEE TSTE 2023</a>&nbsp;· <a href="https://scholar.google.com/scholar?q=%22Real-time%20Coordination%20of%20Cascaded%20Hydroelectric%20Generation%20under%20Decision-Dependent%20Uncertainties%22" target="_blank" rel="noopener" title="Real-time Coordination of Cascaded Hydroelectric Generation under Decision-Dependent Uncertainties">IEEE TSTE 2026</a></p>
+      </figure>
+    </div>
     <div class="sig-body">
       <p class="sig-kicker">Optimization under uncertainty</p>
       <h3>Decision-dependent uncertainty</h3>
-      <p class="sig-math">ℙ<sub>ξ∼P(u)</sub>[ g(u, ξ) ≤ 0 ] ≥ 1 − ε<span>uncertainty realization ξ coupled with decision u</span></p>
-      <p class="sig-links">
-        <span class="badge award">Best Conference Paper, IEEE PES GM 2024</span><br>
-        <a href="https://doi.org/10.1109/TSTE.2023.3262135" target="_blank" rel="noopener">IEEE TSTE 2023</a>&nbsp;·
-        <a href="https://scholar.google.com/scholar?q=%22Real-time%20Coordination%20of%20Cascaded%20Hydroelectric%20Generation%20under%20Decision-Dependent%20Uncertainties%22" target="_blank" rel="noopener">IEEE TSTE 2026</a>&nbsp;·
-        <a href="https://doi.org/10.1109/PESGM51994.2024.10689050" target="_blank" rel="noopener">PES GM 2024</a>
-      </p>
-      <p class="sig-hint">Move the pointer across the chart to change the decision.</p>
+      <p class="sig-hint">Move the pointer across the right chart to change the decision.</p>
     </div>
   </article>
-  <article class="sig-row">
-    <canvas class="sig-art" id="sig4" aria-label="Scenarios mapped from the uncertainty space to the decision space, clustered by decision impact, and representatives mapped back"></canvas>
+  <article class="sig-row sig-wide">
+    <div class="sig-panels sig-p2">
+      <figure class="sig-panel">
+        <figcaption><b>Risk-neutral</b> reduce scenarios in the decision space</figcaption>
+        <canvas class="sig-art" id="sig4" aria-label="Scenarios mapped from the uncertainty space to the decision space, clustered by decision impact, and representatives mapped back"></canvas>
+        <p class="sig-math sig-pmath">OG ≤ 2h(M) Σ<sub>k</sub> Σ<sub>i∈C<sub>k</sub></sub> γ<sub>i</sub> d(ξ<sub>i</sub>, ζ<sub>k</sub>)<span>d(ξ<sub>i</sub>,ζ<sub>k</sub>) = F(z*<sub>ζ<sub>k</sub></sub>,ξ<sub>i</sub>) − F(z*<sub>ξ<sub>i</sub></sub>,ξ<sub>i</sub>) + F(z*<sub>ξ<sub>i</sub></sub>,ζ<sub>k</sub>) − F(z*<sub>ζ<sub>k</sub></sub>,ζ<sub>k</sub>), the problem-driven distance</span></p>
+        <p class="sig-plinks"><a href="https://doi.org/10.1109/TPWRS.2024.3523220" target="_blank" rel="noopener" title="Problem-Driven Scenario Reduction Framework for Power System Stochastic Operation">IEEE TPWRS 2025</a>&nbsp;· <a href="https://doi.org/10.1109/TPWRS.2025.3639304" target="_blank" rel="noopener" title="A Weighted Predict-and-Optimize Framework for Power System Operation Considering Varying Impacts of Uncertainty">IEEE TPWRS 2025</a>&nbsp;· <a href="https://doi.org/10.1016/j.apenergy.2024.125034" target="_blank" rel="noopener" title="Real-time Hosting Capacity Assessment for Electric Vehicles: A Sequential Forecast-then-Optimize Method">Applied Energy 2025</a></p>
+      </figure>
+      <figure class="sig-panel">
+        <figcaption><b>Risk-averse</b> keep the tail that sets CVaR</figcaption>
+        <canvas class="sig-art" id="sig4b" aria-label="The same scenarios and spaces as the risk-neutral panel; the worst-cost tail is merged into ordinary clusters, then each iteration adds a representative inside the tail until the CVaR of the representatives matches that of all scenarios"></canvas>
+        <p class="sig-math sig-pmath">min<sub>ζ</sub> F(z*<sub>ζ</sub>, ξ),&nbsp; F(z, ξ) = Σ<sub>i</sub> γ<sub>i</sub> f(z, ξ<sub>i</sub>) + λ ( v<sub>α</sub> + <sup>1</sup>⁄<sub>1−α</sub> Σ<sub>i</sub> γ<sub>i</sub>[f(z, ξ<sub>i</sub>) − v<sub>α</sub>]<sub>+</sub> )<span>iterative problem-driven reduction: OG = F(z*<sub>ζ</sub>, ξ) − F(z*<sub>ξ</sub>, ξ) is minimized without solving the N-scenario problem</span></p>
+        <p class="sig-plinks"><a href="https://doi.org/10.48550/arXiv.2510.15251" target="_blank" rel="noopener" title="An Iterative Problem-Driven Scenario Reduction Framework for Stochastic Optimization with Conditional Value-at-Risk">EPSR / PSCC 2026</a></p>
+      </figure>
+    </div>
     <div class="sig-body">
       <p class="sig-kicker">Trustworthy AI</p>
       <h3>Decision-focused learning for scenario reduction</h3>
-      <p class="sig-math">min<sub>Ω<sub>r</sub></sub> Σ<sub>ξ</sub> |cost(x*<sub>Ω<sub>r</sub></sub>, ξ) − cost(x*<sub>ξ</sub>, ξ)|<span>minimize the optimality gap of the reduced scenario set Ω<sub>r</sub></span></p>
-      <p class="sig-links">
-        <a href="https://doi.org/10.1109/TPWRS.2024.3523220" target="_blank" rel="noopener">IEEE TPWRS 2025</a>&nbsp;·
-        <a href="https://doi.org/10.1109/TPWRS.2025.3639304" target="_blank" rel="noopener">IEEE TPWRS 2025</a>&nbsp;·
-        <a href="https://doi.org/10.48550/arXiv.2510.15251" target="_blank" rel="noopener">EPSR / PSCC 2026</a>&nbsp;·
-        <a href="https://doi.org/10.1016/j.apenergy.2024.125034" target="_blank" rel="noopener">Applied Energy 2025</a>
-      </p>
     </div>
   </article>
-  <article class="sig-row sig-flip">
-    <canvas class="sig-art" id="sig3" aria-label="Storage bids that withhold capacity are detected and pulled inside a provable bound corridor while the social welfare gap converges to zero"></canvas>
+  <article class="sig-row sig-wide">
+    <div class="sig-panels sig-p3">
+      <figure class="sig-panel">
+        <figcaption><b>Bid</b> monotone in SOC and uncertainty</figcaption>
+        <canvas class="sig-art" id="sig3a" aria-label="Stepwise storage discharge and charge bids over state-of-charge segments that fall with state of charge and rise with price uncertainty"></canvas>
+        <p class="sig-math sig-pmath">discharge bid A = M + v(e − p/η)/η,&nbsp; charge bid D = η v(e + bη)<span>discharge bid A and charge bid D follow the marginal value v, which decreases with SOC e and, in the normal-price regime, increases with price uncertainty σ</span></p>
+        <p class="sig-plinks"><a href="https://doi.org/10.1109/tii.2026.3706291" target="_blank" rel="noopener" title="Privacy-Preserving Opportunity Cost Bounds for Efficient Energy Storage Market Coordination">IEEE TII 2026</a></p>
+      </figure>
+      <figure class="sig-panel">
+        <figcaption><b>Compress</b> value functions with rank-1 PCA</figcaption>
+        <canvas class="sig-art" id="sig3b" aria-label="Value functions over SOC segments are represented by their mean plus one cone-constrained principal direction times a nonnegative score per time step"></canvas>
+        <p class="sig-math sig-pmath">q̂<sub>t</sub> = q̄ + ŵ<sub>t</sub> ν*,&nbsp; ν* = argmax<sub>u∈𝒞∩𝕊</sub> u<sup>T</sup>Σu<span>rank-1 cone-constrained PCA: Q ≈ q̄1<sup>T</sup> + ν*ŵ<sup>T</sup>, 𝒞 = monotone non-increasing; ŵ<sub>t</sub> = max(0, ⟨q<sub>t</sub> − q̄, ν*⟩)</span></p>
+        <p class="sig-plinks"><a href="https://doi.org/10.1145/3744255.3811743" target="_blank" rel="noopener" title="Bellman-Consistent Reduced-Dimension Representation of Energy Storage Value Functions for Accelerated Computation">ACM e-Energy 2026</a></p>
+      </figure>
+      <figure class="sig-panel">
+        <figcaption><b>Regulate</b> withholding with chance-constrained, privacy-preserving bid bounds</figcaption>
+        <canvas class="sig-art" id="sig3" aria-label="Storage bids that withhold capacity are detected and pulled inside a provable bound corridor while the welfare loss converges to zero"></canvas>
+        <p class="sig-math sig-pmath">ℙ[ <span class="unl">b</span>(SoC, σ) ≤ q ≤ <span class="ovl">b</span>(SoC, σ) ] ≥ 1 − α<span>charge and discharge bid bounds reliably bracket the future opportunity cost q</span></p>
+        <p class="sig-plinks"><a href="https://doi.org/10.1109/TEMPR.2025.3579671" target="_blank" rel="noopener" title="Locational Energy Storage Bid Bounds for Facilitating Social Welfare Convergence">IEEE TEMPR 2025</a>&nbsp;· <a href="https://doi.org/10.1109/PESGM52009.2025.11225367" target="_blank" rel="noopener" title="Comparative Withholding Behavior Analysis of Historical Energy Storage Bids in California">PES GM 2025</a></p>
+      </figure>
+    </div>
     <div class="sig-body">
       <p class="sig-kicker">Market design</p>
-      <h3>Storage market power: detection and mitigation</h3>
-      <p class="sig-math">ℙ[ <span class="unl">b</span>(SoC, σ) ≤ q ≤ <span class="ovl">b</span>(SoC, σ) ] ≥ 1 − α<span>charge and discharge bid bounds reliably bracket the future opportunity cost q; both rise with uncertainty σ and fall with SoC</span></p>
-      <p class="sig-links">
-        <a href="https://doi.org/10.1109/TEMPR.2025.3579671" target="_blank" rel="noopener">IEEE TEMPR 2025</a>&nbsp;·
-        <a href="https://doi.org/10.1109/tii.2026.3706291" target="_blank" rel="noopener">IEEE TII 2026</a>&nbsp;·
-        <a href="https://doi.org/10.1109/PESGM52009.2025.11225367" target="_blank" rel="noopener">PES GM 2025</a>
-      </p>
+      <h3>Storage bidding and market power mitigation</h3>
     </div>
   </article>
-  <article class="sig-row sig-maprow">
-    <div class="sig-artcol">
-      <figure class="sig-art sig-map">
-        <img src="images/synfuel_corridors_world.jpg" alt="World map of the cheapest secure synthetic-fuel supply corridors, with routes and cost premiums" loading="lazy">
-        <canvas id="sig5acts" aria-label="Three acts: normal trade along the corridors, chokepoints disrupted, and security value outweighing the cost premium so that domestic synthetic fuel is built"></canvas>
+  <article class="sig-row sig-wide">
+    <div class="sig-panels sig-pmap">
+      <figure class="sig-panel">
+        <figcaption><b>Geographic</b> chokepoints close, home production starts</figcaption>
+        <div class="sig-art sig-map">
+          <img src="images/synfuel_corridors_world.jpg" alt="World map of the cheapest secure synthetic-fuel supply corridors, with routes and cost premiums" loading="lazy">
+          <canvas id="sig5acts" aria-label="Three acts: normal trade along the corridors, chokepoints disrupted, and security value outweighing the cost premium so that domestic synthetic fuel is built"></canvas>
+        </div>
+        <p class="sig-legend">
+          <span class="lg-row">
+          <span class="lg-cat" title="low cost, high demand"><i style="background:#A63603"></i>Build-first</span>
+          <span class="lg-cat" title="low cost, low demand"><i style="background:#0072B2"></i>Export-oriented</span>
+          <span class="lg-cat" title="high cost, high demand"><i style="background:#F3C64B"></i>Supply-strained</span>
+          <span class="lg-cat" title="high cost, low demand"><i style="background:#F7F7F7"></i>Limited potential</span>
+          <span class="lg-route"><span class="lg-fos"></span>fossil fuel</span>
+          <span class="lg-route"><span class="lg-syn"></span>synthetic fuel</span>
+          <span class="lg-route"><span class="lg-build"></span>build at home</span>
+          </span>
+        </p>
+        <div class="sig-math sig-mathstrip">
+          <p><b>cost premium ≤ security margin</b><span>⇒ build at home; security margin = expected disruption loss avoided</span></p>
+          <div class="sig-strip">
+            <p class="sig-act" id="sig5cap">① normal trade</p>
+            <canvas class="sig-bars" id="sig5bars" aria-label="Cost premium, security value and net premium of domestic synthetic fuel"></canvas>
+          </div>
+        </div>
+
+        <p class="sig-plinks"><span class="badge ur">Nature Energy, under review</span></p>
       </figure>
-      <p class="sig-legend">
-        <span class="lg-row">
-        <span class="lg-cat" title="low cost, high demand"><i style="background:#A63603"></i>Build-first</span>
-        <span class="lg-cat" title="low cost, low demand"><i style="background:#0072B2"></i>Export-oriented</span>
-        <span class="lg-cat" title="high cost, high demand"><i style="background:#F3C64B"></i>Supply-strained</span>
-        <span class="lg-cat" title="high cost, low demand"><i style="background:#F7F7F7"></i>Limited potential</span>
-        </span>
-        <span class="lg-row">
-        <span class="lg-route"><span class="lg-fos"></span>fossil fuel (oil, LNG)</span>
-        <span class="lg-route"><span class="lg-syn"></span>synthetic fuel</span>
-        <span class="lg-route"><span class="lg-build"></span>build at home</span>
-        </span>
-      </p>
+      <figure class="sig-panel">
+        <figcaption><b>Security value</b> triples the CO<sub>2</sub> abatement that pays off</figcaption>
+        <canvas class="sig-art" id="sig5macc" aria-label="Abatement cost curves for 139 economies: blocks sorted by cost premium; subtracting the security value moves imported-supply blocks below zero, so abatement that pays off grows from 0.27 to 0.85 GtCO2 per year at 2030 costs"></canvas>
+        <p class="sig-legend">
+          <span class="lg-row">
+          <span class="lg-cat"><i style="background:var(--accent)"></i>pays off on fuel cost</span>
+          <span class="lg-cat"><i style="background:var(--accent-2)"></i>pays off with security value</span>
+          <span class="lg-cat"><i style="background:color-mix(in srgb, var(--ink-3) 45%, transparent)"></i>costlier</span>
+          </span>
+        </p>
+        <p class="sig-math sig-pmath">net premium = cost premium − security margin ≤ 0<span>CO<sub>2</sub> abatement that pays off: 0.27 → 0.85 GtCO<sub>2</sub>/yr at 2030 costs, 139 economies</span></p>
+        <p class="sig-plinks"><a href="https://thuqining.github.io/synfuel-energy-security/" target="_blank" rel="noopener" title="Energy security can accelerate domestic synthetic fuel adoption and CO2 abatement">Project page</a></p>
+      </figure>
     </div>
     <div class="sig-body">
       <p class="sig-kicker">Energy policy and energy security</p>
       <h3>Energy security accelerates synthetic-fuel adoption</h3>
-      <p class="sig-math"><b>cost premium − security value ≤ 0</b><span>⇒ build at home</span></p>
-      <div class="sig-strip">
-        <p class="sig-act" id="sig5cap">① normal trade</p>
-        <canvas class="sig-bars" id="sig5bars" aria-label="Cost premium, security value and net premium of domestic synthetic fuel"></canvas>
-      </div>
-      <p class="sig-links">
-        <span class="badge ur">Nature Energy, under review</span><br>
-        <a href="https://thuqining.github.io/synfuel-energy-security/" target="_blank" rel="noopener">Project page</a>
-      </p>
     </div>
   </article>
 </section>
@@ -132,14 +177,16 @@
 </main>
 
 <footer>
-  <div class="wrap foot-inner">
+  <div class="wrap wrap-wide foot-inner">
     <span>© 2026 Ning Qi · 918 S.W. Mudd, 500 W 120th St, New York, NY 10027</span>
     <span><a href="mailto:nq2176@columbia.edu">nq2176@columbia.edu</a> · <a href="files/CV_Ning_Qi_Full.pdf">Full CV (PDF)</a></span>
   </div>
 </footer>
 
 <script src="assets/site.js"></script>
-<script src="assets/signature.js?v=20261029e"></script>
-<script src="assets/synfuel-acts.js?v=20261028l"></script>
+<script src="assets/signature.js?v=20261104h"></script>
+<script src="assets/synfuel-acts.js?v=20261104h"></script>
+<script src="assets/synfuel-macc-data.js?v=20261104h"></script>
+<script src="assets/synfuel-macc.js?v=20261104h"></script>
 </body>
 </html>

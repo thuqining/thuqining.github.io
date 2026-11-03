@@ -402,3 +402,48 @@ footer { margin-top: 56px; border-top: 1px solid var(--line); padding: 26px 0 40
 .sig-strip { margin: 0 0 10px; padding: 8px 10px 4px; background: var(--bg-soft); border-radius: 10px; }
 .sig-strip .sig-act { margin: 0 0 4px; white-space: nowrap; font-size: 12px; }
 .sig-strip .sig-bars { height: 76px; margin: 0; }
+/* Signature page, wide layout: each row shows its animated panels side by side, the text below */
+.wrap-wide { max-width: 1340px; }
+.sig-page .sig-wide { grid-template-columns: 1fr; gap: 12px; padding: 14px 14px 16px; }
+.sig-panels { display: grid; gap: 12px; min-width: 0; }
+.sig-p1 { grid-template-columns: minmax(0, 1fr); }
+.sig-p2 { grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); }
+.sig-p3 { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.25fr); }
+.sig-pmap { grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); align-items: start; }
+.sig-panel { margin: 0; min-width: 0; display: flex; flex-direction: column; }
+.sig-panel figcaption { font-size: 12.5px; color: var(--ink-3); margin: 0 0 6px 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sig-panel figcaption b { color: var(--accent-2); font-weight: 700; text-transform: uppercase; letter-spacing: .06em; font-size: 11.5px; margin-right: 6px; }
+.sig-wide .sig-art { height: 320px; }
+.sig-pmap .sig-map { height: auto; }
+.sig-pmap #sig5macc { height: auto; aspect-ratio: 1.38; }
+.sig-wide .sig-hint { grid-column: 1; margin-top: 0; }
+.sig-mathstrip { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 4px 18px; align-items: center; }
+.sig-mathstrip p { margin: 0; }
+.sig-mathstrip .sig-strip { margin: 0; background: var(--card); }
+@media (max-width: 900px) {
+  .sig-p2, .sig-p3, .sig-pmap { grid-template-columns: 1fr; }
+  .sig-wide .sig-art { height: 280px; }
+  .sig-mathstrip { grid-template-columns: 1fr; }
+}
+/* one formula under each panel; the row text below holds only the title and the papers */
+.sig-pmath { margin: 8px 0 0; font-size: 15px; padding: 8px 12px; }
+.sig-pmath span { font-size: 12px; line-height: 1.45; }
+.sig-pmap .sig-mathstrip { margin: 8px 0 0; font-size: 15px; padding: 8px 12px; }
+.sig-page .sig-wide .sig-body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 2px 28px; align-items: center; padding: 4px 6px 0; }
+.sig-page .sig-wide .sig-kicker, .sig-page .sig-wide h3, .sig-page .sig-wide .sig-hint { grid-column: 1; }
+.sig-page .sig-wide h3 { margin-bottom: 0; }
+.sig-page .sig-wide .sig-links { grid-column: 2; grid-row: 1 / span 3; text-align: right; }
+@media (max-width: 900px) {
+  .sig-page .sig-wide .sig-body { grid-template-columns: 1fr; }
+  .sig-page .sig-wide .sig-links { grid-column: 1; grid-row: auto; text-align: left; }
+}
+.sig-plinks { margin: 6px 2px 0; font-size: 12.5px; color: var(--ink-3); line-height: 1.9; }
+.sig-plinks a, .sig-plinks .badge { white-space: nowrap; }
+.sig-plinks .badge { margin-left: 0; }
+.sig-panel .sig-pmath { flex: 1 0 auto; }
+.sig-page .sig-wide .sig-body { grid-template-columns: 1fr; }
+/* energy-security row: map, legend, formula; the abatement chart stretches to the same height */
+.sig-page .sig-pmap { align-items: start; }
+.sig-page .sig-pmap #sig5macc { height: auto; aspect-ratio: 1.615; flex: 0 0 auto; }   /* same height as the map (columns 1.55 : 1, map 2.5 : 1) */
+.sig-page .sig-pmap .sig-pmath { flex: 0 0 auto; }
+.sig-page .sig-pmap .sig-legend { margin: 6px 2px 0; }
